@@ -118,8 +118,8 @@ export default function PlanList({
               onChange={(e) => setSortBy(e.target.value as SortOption)}
               className="
                 px-3 py-2 border border-gray-300 rounded-lg
-                text-sm font-medium text-gray-700
-                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                text-sm font-medium text-[#003366]
+                focus:outline-none focus:ring-2 focus:ring-[#00943C] focus:border-[#00943C]
                 bg-white cursor-pointer
               "
             >

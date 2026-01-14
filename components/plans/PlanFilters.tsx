@@ -218,7 +218,7 @@ export default function PlanFilters({
               placeholder="Search providers..."
               value={providerSearch}
               onChange={(e) => setProviderSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#00943C] focus:border-[#00943C]"
+              className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg text-sm text-[#003366] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00943C] focus:border-[#00943C]"
             />
           </div>
 

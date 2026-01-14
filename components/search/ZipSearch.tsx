@@ -77,6 +77,7 @@ export default function ZipSearch({ onSearch }: ZipSearchProps) {
               maxLength={5}
               className={`
                 w-full px-5 py-4 text-lg border-2 rounded-lg
+                text-[#003366] placeholder:text-gray-400
                 focus:outline-none focus:ring-2 focus:ring-[#00943C]
                 transition-all duration-200
                 ${error

@@ -188,7 +188,7 @@ export default function NewPlan() {
             value={formData.provider_id}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg text-[#003366] placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           >
             <option value="">Select a provider</option>
             {providers.map((provider) => (
@@ -212,7 +212,7 @@ export default function NewPlan() {
             onChange={handleChange}
             required
             placeholder="e.g., Energy Saver 12"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg text-[#003366] placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
 
@@ -228,7 +228,7 @@ export default function NewPlan() {
               value={formData.plan_type}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg text-[#003366] placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             >
               <option value="Fixed">Fixed</option>
               <option value="Variable">Variable</option>
@@ -249,7 +249,7 @@ export default function NewPlan() {
               required
               min="0"
               placeholder="0 for month-to-month"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg text-[#003366] placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
         </div>
@@ -274,7 +274,7 @@ export default function NewPlan() {
                 step="0.1"
                 min="0"
                 placeholder="12.5"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg text-[#003366] placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
 
@@ -292,7 +292,7 @@ export default function NewPlan() {
                 step="0.1"
                 min="0"
                 placeholder="11.2"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg text-[#003366] placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
 
@@ -310,7 +310,7 @@ export default function NewPlan() {
                 step="0.1"
                 min="0"
                 placeholder="10.8"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg text-[#003366] placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
           </div>
@@ -331,7 +331,7 @@ export default function NewPlan() {
               step="0.01"
               min="0"
               placeholder="9.95"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg text-[#003366] placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
@@ -348,7 +348,7 @@ export default function NewPlan() {
               step="0.01"
               min="0"
               placeholder="150.00"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg text-[#003366] placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
         </div>
@@ -367,7 +367,7 @@ export default function NewPlan() {
             min="0"
             max="100"
             placeholder="0"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg text-[#003366] placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
 
@@ -407,7 +407,7 @@ export default function NewPlan() {
                 value={formData.efl_url}
                 onChange={handleChange}
                 placeholder="https://example.com/efl.pdf"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg text-[#003366] placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
 
@@ -422,7 +422,7 @@ export default function NewPlan() {
                 value={formData.tos_url}
                 onChange={handleChange}
                 placeholder="https://example.com/tos.pdf"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg text-[#003366] placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
 
@@ -437,7 +437,7 @@ export default function NewPlan() {
                 value={formData.yrac_url}
                 onChange={handleChange}
                 placeholder="https://example.com/yrac.pdf"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg text-[#003366] placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
           </div>
