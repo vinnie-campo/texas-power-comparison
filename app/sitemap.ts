@@ -67,7 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Get all article slugs from articles data
   const resourcePages: MetadataRoute.Sitemap = articles.map((article) => ({
     url: `${siteUrl}/resources/${article.slug}`,
-    lastModified: article.publishedAt ? new Date(article.publishedAt) : new Date(),
+    lastModified: article.lastUpdated ? new Date(article.lastUpdated) : new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }));
