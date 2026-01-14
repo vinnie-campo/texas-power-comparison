@@ -62,7 +62,7 @@ export default function ZipSearch({ onSearch }: ZipSearchProps) {
             htmlFor="zip-code"
             className="block text-lg font-semibold text-secondary-blue"
           >
-            enter your ZIP code
+            Enter Your ZIP Code
           </label>
 
           {/* Input Field */}
@@ -107,13 +107,13 @@ export default function ZipSearch({ onSearch }: ZipSearchProps) {
             className="w-full btn-primary flex items-center justify-center gap-2"
           >
             <Search className="w-5 h-5" />
-            search plans
+            Search Plans
           </button>
         </form>
 
         {/* Helper Text */}
         <p className="mt-4 text-sm text-secondary-blue/70 text-center">
-          find the best electricity rates in your area
+          Find the best electricity rates in your area
         </p>
       </div>
     </div>

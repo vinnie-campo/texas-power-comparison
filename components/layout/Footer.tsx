@@ -5,16 +5,16 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { href: '/compare', label: 'compare rates' },
-    { href: '/how-it-works', label: 'how it works' },
-    { href: '/about', label: 'about us' },
-    { href: '/contact', label: 'contact' },
+    { href: '/compare', label: 'Compare Rates' },
+    { href: '/how-it-works', label: 'How It Works' },
+    { href: '/about', label: 'About Us' },
+    { href: '/contact', label: 'Contact' },
   ];
 
   const resources = [
-    { href: '/resources/understanding-bill', label: 'understanding your bill' },
-    { href: '/resources/fixed-vs-variable', label: 'fixed vs variable rates' },
-    { href: '/resources/switching', label: 'switching providers' },
+    { href: '/resources/understanding-bill', label: 'Understanding Your Bill' },
+    { href: '/resources/fixed-vs-variable', label: 'Fixed vs Variable Rates' },
+    { href: '/resources/switching', label: 'Switching Providers' },
     { href: '/resources/faq', label: 'FAQ' },
   ];
 
@@ -24,7 +24,7 @@ export default function Footer() {
     { href: '/cities/austin', label: 'Austin' },
     { href: '/cities/san-antonio', label: 'San Antonio' },
     { href: '/cities/fort-worth', label: 'Fort Worth' },
-    { href: '/cities', label: 'view all cities' },
+    { href: '/cities', label: 'View All Cities' },
   ];
 
   return (
@@ -43,7 +43,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm text-white/80">
-              find the best electricity rates in Texas
+              Find the best electricity rates in Texas
             </p>
             <p className="text-sm text-white/60">
               © {currentYear} Texas Power Compare
@@ -53,7 +53,7 @@ export default function Footer() {
           {/* Column 2: Quick Links */}
           <div>
             <h3 className="text-white font-semibold text-sm mb-4">
-              quick links
+              Quick Links
             </h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
@@ -72,7 +72,7 @@ export default function Footer() {
           {/* Column 3: Resources */}
           <div>
             <h3 className="text-white font-semibold text-sm mb-4">
-              resources
+              Resources
             </h3>
             <ul className="space-y-3">
               {resources.map((link) => (
@@ -91,7 +91,7 @@ export default function Footer() {
           {/* Column 4: Service Areas */}
           <div>
             <h3 className="text-white font-semibold text-sm mb-4">
-              service areas
+              Service Areas
             </h3>
             <ul className="space-y-3">
               {serviceAreas.map((link) => (
@@ -121,20 +121,20 @@ export default function Footer() {
                 href="/privacy"
                 className="text-white/70 hover:text-[#E5007D] transition-colors"
               >
-                privacy policy
+                Privacy Policy
               </Link>
               <span className="text-white/30">|</span>
               <Link
                 href="/terms"
                 className="text-white/70 hover:text-[#E5007D] transition-colors"
               >
-                terms of service
+                Terms of Service
               </Link>
             </div>
 
             {/* Disclaimer */}
             <p className="text-xs text-white/50">
-              not affiliated with PUCT or Power to Choose
+              Not affiliated with PUCT or Power to Choose
             </p>
           </div>
         </div>

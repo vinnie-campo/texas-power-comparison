@@ -234,7 +234,7 @@ export default function PlanDetailsModal({
                   className="flex items-center gap-2 text-sm text-primary-pink hover:opacity-80 transition-opacity"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  <span>electricity facts label (EFL)</span>
+                  <span>Electricity Facts Label (EFL)</span>
                 </a>
                 <a
                   href="#"
@@ -242,7 +242,7 @@ export default function PlanDetailsModal({
                   className="flex items-center gap-2 text-sm text-primary-pink hover:opacity-80 transition-opacity"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  <span>terms of service (TOS)</span>
+                  <span>Terms of Service (TOS)</span>
                 </a>
                 <a
                   href="#"
@@ -250,7 +250,7 @@ export default function PlanDetailsModal({
                   className="flex items-center gap-2 text-sm text-primary-pink hover:opacity-80 transition-opacity"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  <span>your rights as a customer (YRAC)</span>
+                  <span>Your Rights as a Customer (YRAC)</span>
                 </a>
               </div>
             </div>
@@ -284,13 +284,13 @@ export default function PlanDetailsModal({
               rel="noopener noreferrer"
               className="block w-full btn-primary text-center py-4 px-6 shadow-lg"
             >
-              check availability
+              Check Availability
             </a>
             <button
               onClick={onClose}
               className="block w-full btn-secondary text-center py-3 px-6"
             >
-              back to results
+              Back to Results
             </button>
           </div>
 

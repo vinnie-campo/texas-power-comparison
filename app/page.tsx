@@ -111,21 +111,21 @@ export default async function Home() {
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-5 py-2.5 mb-8">
                 <Award className="w-4 h-4" />
                 <span className="text-sm font-medium">
-                  trusted by 50,000+ Texans
+                  Trusted by 50,000+ Texans
                 </span>
               </div>
 
               {/* Main Headline */}
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight">
-                compare electricity rates{' '}
-                <span className="text-[#00D4AA]">in seconds</span>
+                Compare Texas Electricity Rates{' '}
+                <span className="text-[#00D4AA]">in Seconds</span>
               </h1>
 
               {/* Subheadline */}
               <p className="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed">
-                find the best electricity plan for your home.{' '}
+                Find the best electricity plan for your home.{' '}
                 <strong className="text-white">
-                  save up to 40% on your monthly bill.
+                  Save up to 40% on your monthly bill.
                 </strong>
               </p>
 
@@ -138,15 +138,15 @@ export default async function Home() {
               <div className="flex flex-wrap items-center justify-center gap-8 mt-10 text-sm text-white/90">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#00D4AA]" />
-                  <span>100% free service</span>
+                  <span>100% Free Service</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#00D4AA]" />
-                  <span>no hidden fees</span>
+                  <span>No Hidden Fees</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-[#00D4AA]" />
-                  <span>takes 2 minutes</span>
+                  <span>Takes 2 Minutes</span>
                 </div>
               </div>
             </div>
@@ -161,26 +161,26 @@ export default async function Home() {
                 <div className="text-4xl md:text-5xl font-bold text-primary-pink mb-2">
                   {cityCount || 250}+
                 </div>
-                <div className="text-secondary-blue font-medium">cities covered</div>
+                <div className="text-secondary-blue font-medium">Cities Covered</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl md:text-5xl font-bold text-primary-pink mb-2">
                   {providerCount || 8}
                 </div>
-                <div className="text-secondary-blue font-medium">top providers</div>
+                <div className="text-secondary-blue font-medium">Top Providers</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl md:text-5xl font-bold text-primary-pink mb-2">
                   {planCount || 29}+
                 </div>
-                <div className="text-secondary-blue font-medium">plans available</div>
+                <div className="text-secondary-blue font-medium">Plans Available</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl md:text-5xl font-bold text-accent-teal mb-2">
                   $300+
                 </div>
                 <div className="text-secondary-blue font-medium">
-                  avg. annual savings
+                  Avg. Annual Savings
                 </div>
               </div>
             </div>
@@ -192,10 +192,10 @@ export default async function Home() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-secondary-blue mb-4">
-                how it works
+                How It Works
               </h2>
               <p className="text-lg text-secondary-blue/70 max-w-2xl mx-auto">
-                finding the best electricity rate is simple with our free
+                Finding the best electricity rate is simple with our free
                 comparison tool
               </p>
             </div>
@@ -211,10 +211,10 @@ export default async function Home() {
                     1
                   </div>
                   <h3 className="text-2xl font-bold text-secondary-blue mb-3">
-                    enter your ZIP code
+                    Enter Your ZIP Code
                   </h3>
                   <p className="text-secondary-blue/70">
-                    tell us where you live to see plans available in your area
+                    Tell us where you live to see plans available in your area
                   </p>
                 </div>
               </div>
@@ -229,10 +229,10 @@ export default async function Home() {
                     2
                   </div>
                   <h3 className="text-2xl font-bold text-secondary-blue mb-3">
-                    compare personalized plans
+                    Compare Personalized Plans
                   </h3>
                   <p className="text-secondary-blue/70">
-                    see side-by-side comparisons based on your actual usage
+                    See side-by-side comparisons based on your actual usage
                   </p>
                 </div>
               </div>
@@ -247,10 +247,10 @@ export default async function Home() {
                     3
                   </div>
                   <h3 className="text-2xl font-bold text-secondary-blue mb-3">
-                    switch & save
+                    Switch & Save
                   </h3>
                   <p className="text-secondary-blue/70">
-                    enroll online in minutes and start saving on your next bill
+                    Enroll online in minutes and start saving on your next bill
                   </p>
                 </div>
               </div>

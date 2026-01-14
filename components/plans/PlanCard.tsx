@@ -111,7 +111,7 @@ export default function PlanCard({ plan, selectedUsage, usageBreakdown }: PlanCa
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-primary-pink" />
               <p className="text-xs font-semibold text-primary-pink">
-                your estimated bill
+                Your Estimated Bill
               </p>
             </div>
             <div className="relative">
@@ -125,7 +125,7 @@ export default function PlanCard({ plan, selectedUsage, usageBreakdown }: PlanCa
               </button>
               {showTooltip && (
                 <div className="absolute right-0 top-6 z-10 w-48 bg-secondary-blue text-white text-xs rounded-2xl p-3 shadow-lg">
-                  based on your home profile and estimated {usageBreakdown.total} kWh/month usage
+                  Based on your home profile and estimated {usageBreakdown.total} kWh/month usage
                   <div className="absolute -top-1 right-2 w-2 h-2 bg-secondary-blue transform rotate-45"></div>
                 </div>
               )}
@@ -138,7 +138,7 @@ export default function PlanCard({ plan, selectedUsage, usageBreakdown }: PlanCa
             <span className="text-sm text-secondary-blue/70">/month</span>
           </div>
           <p className="text-xs text-secondary-blue/60 mt-1">
-            based on {usageBreakdown.total} kWh/month
+            Based on {usageBreakdown.total} kWh/month
           </p>
         </div>
       )}
@@ -148,26 +148,26 @@ export default function PlanCard({ plan, selectedUsage, usageBreakdown }: PlanCa
         {/* Rate Display */}
         <div className="mb-4">
           <div className="flex items-baseline gap-1 mb-1">
-            <span className="text-sm text-secondary-blue/60">rate:</span>
+            <span className="text-sm text-secondary-blue/60">Rate:</span>
             <span className="text-2xl font-bold text-primary-pink">
               {rate.toFixed(1)}¢
             </span>
             <span className="text-sm text-secondary-blue/60">per kWh</span>
           </div>
           <p className="text-xs text-secondary-blue/50">
-            based on {selectedUsage} kWh usage tier
+            Based on {selectedUsage} kWh usage tier
           </p>
         </div>
 
         {/* Standard Estimated Bill (if no personalized bill) */}
         {!personalizedBill && (
           <div className="bg-light-blue rounded-2xl p-4 mb-4">
-            <p className="text-xs text-secondary-blue/70 mb-1">estimated monthly bill</p>
+            <p className="text-xs text-secondary-blue/70 mb-1">Estimated Monthly Bill</p>
             <p className="text-2xl font-bold text-secondary-blue">
               ${standardBill.toFixed(2)}
             </p>
             <p className="text-xs text-secondary-blue/50">
-              at {selectedUsage} kWh/month
+              At {selectedUsage} kWh/month
             </p>
           </div>
         )}
@@ -188,7 +188,7 @@ export default function PlanCard({ plan, selectedUsage, usageBreakdown }: PlanCa
           {plan.renewable_percentage > 0 && (
             <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium bg-[#00D4AA]/10 text-accent-teal">
               <Leaf className="w-3 h-3" />
-              {plan.renewable_percentage}% renewable
+              {plan.renewable_percentage}% Renewable
             </span>
           )}
         </div>
@@ -196,10 +196,10 @@ export default function PlanCard({ plan, selectedUsage, usageBreakdown }: PlanCa
         {/* Additional Details */}
         <div className="text-xs text-secondary-blue/60 space-y-1 mb-4 flex-grow">
           {plan.base_charge > 0 && (
-            <p>base charge: ${plan.base_charge.toFixed(2)}/month</p>
+            <p>Base Charge: ${plan.base_charge.toFixed(2)}/month</p>
           )}
           {plan.early_termination_fee !== null && plan.early_termination_fee > 0 && (
-            <p>early termination fee: ${plan.early_termination_fee.toFixed(2)}</p>
+            <p>Early Termination Fee: ${plan.early_termination_fee.toFixed(2)}</p>
           )}
         </div>
 
@@ -210,7 +210,7 @@ export default function PlanCard({ plan, selectedUsage, usageBreakdown }: PlanCa
           "
           onClick={() => setIsModalOpen(true)}
         >
-          view details
+          View Details
         </button>
       </div>
 

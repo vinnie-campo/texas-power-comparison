@@ -10,10 +10,10 @@ export default function Header() {
   const pathname = usePathname();
 
   const navLinks = [
-    { href: '/', label: 'home' },
-    { href: '/compare', label: 'compare rates' },
-    { href: '/providers', label: 'providers' },
-    { href: '/resources', label: 'resources' },
+    { href: '/', label: 'Home' },
+    { href: '/compare', label: 'Compare Rates' },
+    { href: '/providers', label: 'Providers' },
+    { href: '/resources', label: 'Resources' },
   ];
 
   const isActive = (href: string) => {
@@ -77,7 +77,7 @@ export default function Header() {
               href="/compare"
               className="bg-white text-[#E5007D] font-semibold py-2.5 px-6 rounded-full transition-all duration-200 hover:scale-105 hover:shadow-xl"
             >
-              find your plan
+              Find Your Plan
             </Link>
           </div>
 
@@ -166,7 +166,7 @@ export default function Header() {
               onClick={closeMobileMenu}
               className="block w-full btn-primary text-center"
             >
-              find your plan
+              Find Your Plan
             </Link>
           </div>
         </div>
