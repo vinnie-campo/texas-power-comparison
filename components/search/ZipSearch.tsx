@@ -65,18 +65,18 @@ export default function ZipSearch({ onSearch, variant = 'default' }: ZipSearchPr
           </label>
 
           {/* Input + Button Row */}
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="flex-1">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <div className="w-full sm:w-auto">
               <input
                 id="zip-code"
                 type="text"
                 inputMode="numeric"
                 value={zipCode}
                 onChange={handleInputChange}
-                placeholder="Enter your ZIP code"
+                placeholder="Enter ZIP code"
                 maxLength={5}
                 className={`
-                  w-full px-6 py-4 text-lg rounded-xl
+                  w-full sm:w-[220px] px-6 py-4 text-lg rounded-xl
                   bg-white text-[#003366] placeholder:text-gray-400
                   border-2 shadow-lg
                   focus:outline-none focus:ring-4 focus:ring-[#00943C]/30
@@ -92,7 +92,7 @@ export default function ZipSearch({ onSearch, variant = 'default' }: ZipSearchPr
             </div>
             <button
               type="submit"
-              className="btn-primary px-8 py-4 text-lg rounded-xl shadow-lg whitespace-nowrap flex items-center justify-center gap-2"
+              className="btn-primary w-full sm:w-auto px-8 py-4 text-lg rounded-xl shadow-lg whitespace-nowrap flex items-center justify-center gap-2"
             >
               <Search className="w-5 h-5" />
               <span>Get a Quote</span>
