@@ -109,8 +109,8 @@ export default async function Home() {
             <div className="max-w-5xl mx-auto text-center">
               {/* Main Headline */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-                Making Energy{' '}
-                <span className="text-[#00943C]">Simpler, Cheaper, Greener</span>
+                Compare Texas Electricity Rates{' '}
+                <span className="text-[#00943C]">in Seconds</span>
               </h1>
 
               {/* Subheadline */}
