@@ -105,48 +105,41 @@ export default async function Home() {
             }}></div>
           </div>
 
-          <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              {/* Trust Badge */}
-              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-5 py-2.5 mb-8">
-                <Award className="w-4 h-4" />
-                <span className="text-sm font-semibold">
-                  Trusted by 50,000+ Texans
-                </span>
-              </div>
-
+          <div className="container mx-auto px-4 py-12 md:py-16 relative z-10">
+            <div className="max-w-5xl mx-auto text-center">
               {/* Main Headline */}
-              <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight">
-                Compare Texas Electricity Rates{' '}
-                <span className="text-[#00943C]">in Seconds</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+                Making Energy{' '}
+                <span className="text-[#00943C]">Simpler, Cheaper, Greener</span>
               </h1>
 
               {/* Subheadline */}
-              <p className="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed">
-                Find the best electricity plan for your home.{' '}
-                <strong className="text-white">
-                  Save up to 40% on your monthly bill.
-                </strong>
+              <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                Compare electricity rates from top Texas providers and save up to 40% on your monthly bill
               </p>
 
-              {/* ZIP Search Component */}
-              <div className="max-w-2xl mx-auto">
-                <ZipSearch />
+              {/* ZIP Search Component - Inline Variant */}
+              <div className="mb-8">
+                <ZipSearch variant="inline" />
               </div>
 
-              {/* Quick Stats */}
-              <div className="flex flex-wrap items-center justify-center gap-8 mt-10 text-sm text-white/90 font-medium">
+              {/* Quick Stats - Inline */}
+              <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-white/80">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-[#00943C]" />
-                  <span>100% Free Service</span>
+                  <CheckCircle className="w-4 h-4 text-[#00943C]" />
+                  <span>100% Free</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-[#00943C]" />
+                  <CheckCircle className="w-4 h-4 text-[#00943C]" />
                   <span>No Hidden Fees</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-[#00943C]" />
+                  <CheckCircle className="w-4 h-4 text-[#00943C]" />
                   <span>Takes 2 Minutes</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Award className="w-4 h-4 text-[#00943C]" />
+                  <span>Trusted by 50,000+ Texans</span>
                 </div>
               </div>
             </div>
@@ -154,32 +147,32 @@ export default async function Home() {
         </section>
 
         {/* STATS/TRUST SECTION */}
-        <section className="py-16 bg-[#F5F7FA]">
+        <section className="py-10 bg-[#F5F7FA]">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-[#003366] mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-[#003366] mb-1">
                   {cityCount || 250}+
                 </div>
-                <div className="text-[#003366] font-semibold">Cities Covered</div>
+                <div className="text-sm text-[#003366] font-medium">Cities Covered</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-[#003366] mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-[#003366] mb-1">
                   {providerCount || 8}
                 </div>
-                <div className="text-[#003366] font-semibold">Top Providers</div>
+                <div className="text-sm text-[#003366] font-medium">Top Providers</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-[#003366] mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-[#003366] mb-1">
                   {planCount || 29}+
                 </div>
-                <div className="text-[#003366] font-semibold">Plans Available</div>
+                <div className="text-sm text-[#003366] font-medium">Plans Available</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-[#00943C] mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-[#00943C] mb-1">
                   $300+
                 </div>
-                <div className="text-[#003366] font-semibold">
+                <div className="text-sm text-[#003366] font-medium">
                   Avg. Annual Savings
                 </div>
               </div>
