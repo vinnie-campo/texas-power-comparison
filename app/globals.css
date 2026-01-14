@@ -1,0 +1,106 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Brand Colors - Bulb Energy Inspired */
+  --primary-pink: #E5007D;
+  --secondary-blue: #1E1E50;
+  --light-blue-bg: #E8F4FD;
+  --accent-teal: #00D4AA;
+  --white: #FFFFFF;
+  --light-gray: #F5F5F5;
+  --dark-text: #1E1E50;
+
+  /* Legacy variables */
+  --background: #ffffff;
+  --foreground: #1E1E50;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Keep light theme for brand consistency */
+    --background: #ffffff;
+    --foreground: #1E1E50;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  /* Brand Button Styles */
+  .btn-primary {
+    @apply bg-[#E5007D] text-white rounded-full px-6 py-3 font-medium transition-all duration-200 hover:scale-105 hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-[#E5007D] border-2 border-[#E5007D] rounded-full px-6 py-3 font-medium transition-all duration-200 hover:scale-105 hover:shadow-lg;
+  }
+
+  /* Card Styles */
+  .card-bulb {
+    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1;
+  }
+
+  /* Pink Gradient Background */
+  .bg-pink-gradient {
+    background: linear-gradient(135deg, #E5007D 0%, #B8006B 100%);
+  }
+
+  /* Hero Gradient */
+  .bg-hero-gradient {
+    background: linear-gradient(135deg, #E5007D 0%, #7E1F8F 100%);
+  }
+
+  /* Text Colors */
+  .text-primary-pink {
+    color: #E5007D;
+  }
+
+  .text-secondary-blue {
+    color: #1E1E50;
+  }
+
+  .text-accent-teal {
+    color: #00D4AA;
+  }
+
+  /* Background Colors */
+  .bg-primary-pink {
+    background-color: #E5007D;
+  }
+
+  .bg-secondary-blue {
+    background-color: #1E1E50;
+  }
+
+  .bg-light-blue {
+    background-color: #E8F4FD;
+  }
+
+  .bg-accent-teal {
+    background-color: #00D4AA;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
