@@ -13,7 +13,9 @@ interface Plan {
   is_active: boolean;
   provider: {
     name: string;
-  };
+  } | {
+    name: string;
+  }[];
 }
 
 export default function PlansManagement() {
@@ -170,7 +172,7 @@ export default function PlansManagement() {
                 {filteredPlans.map((plan) => (
                   <tr key={plan.id} className="hover:bg-gray-50">
                     <td className="py-4 px-6 text-sm font-medium text-gray-900">
-                      {plan.provider?.name || 'Unknown'}
+                      {Array.isArray(plan.provider) ? plan.provider[0]?.name : plan.provider?.name || 'Unknown'}
                     </td>
                     <td className="py-4 px-6 text-sm text-gray-900">
                       {plan.plan_name}

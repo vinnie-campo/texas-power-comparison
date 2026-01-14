@@ -188,7 +188,10 @@ export default async function AdminDashboard() {
                       {plan.plan_name}
                     </td>
                     <td className="py-3 px-4 text-sm text-gray-600">
-                      {plan.provider?.name || 'Unknown'}
+                      {(() => {
+                        const provider: any = plan.provider;
+                        return Array.isArray(provider) ? provider[0]?.name : provider?.name || 'Unknown';
+                      })()}
                     </td>
                     <td className="py-3 px-4 text-sm font-medium text-gray-900">
                       {plan.rate_1000kwh.toFixed(1)}¢

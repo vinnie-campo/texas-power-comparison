@@ -203,7 +203,9 @@ async function comparePlansWithDatabase(
   // Create a map of existing plans
   const existingPlanMap = new Map<string, any>();
   for (const plan of existingPlans || []) {
-    const key = `${plan.provider?.name}::${plan.plan_name}`;
+    const provider: any = plan.provider;
+    const providerName = Array.isArray(provider) ? provider[0]?.name : provider?.name;
+    const key = `${providerName}::${plan.plan_name}`;
     existingPlanMap.set(key, plan);
   }
 
@@ -251,11 +253,13 @@ async function comparePlansWithDatabase(
 
   // Remaining plans in existingPlanMap are no longer available
   for (const [key, plan] of existingPlanMap.entries()) {
+    const provider: any = plan.provider;
+    const providerName = Array.isArray(provider) ? provider[0]?.name : provider?.name;
     removedPlans.push({
       type: 'removed',
       planId: plan.id,
       planName: plan.plan_name,
-      providerName: plan.provider?.name || 'Unknown',
+      providerName: providerName || 'Unknown',
       oldRate: plan.rate_1000kwh,
     });
   }

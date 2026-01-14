@@ -31,7 +31,9 @@ async function fixActivePlans() {
   if (inactivePlans.length > 0) {
     console.log('📋 Sample inactive plans:');
     inactivePlans.slice(0, 5).forEach((plan, i) => {
-      console.log(`  ${i + 1}. ${plan.provider?.name} - ${plan.plan_name}`);
+      const provider: any = plan.provider;
+      const providerName = Array.isArray(provider) ? provider[0]?.name : provider?.name;
+      console.log(`  ${i + 1}. ${providerName || 'Unknown'} - ${plan.plan_name}`);
     });
     console.log();
   }
