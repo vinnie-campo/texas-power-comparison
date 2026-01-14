@@ -82,6 +82,140 @@ export interface StructuredDataProps {
   }>;
 }
 
+// Helper function to generate schema from props (extracted for reuse in 'multiple' type)
+function generateSchemaFromProps(props: StructuredDataProps): any {
+  switch (props.type) {
+    case 'organization':
+      if (!props.organization) return null;
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: props.organization.name,
+        url: props.organization.url,
+        logo: props.organization.logo,
+        description: props.organization.description,
+        contactPoint: props.organization.contactPoint
+          ? {
+              '@type': 'ContactPoint',
+              telephone: props.organization.contactPoint.telephone,
+              contactType: props.organization.contactPoint.contactType,
+            }
+          : undefined,
+      };
+
+    case 'localBusiness':
+      if (!props.localBusiness) return null;
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        name: props.localBusiness.name,
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: props.localBusiness.address.streetAddress,
+          addressLocality: props.localBusiness.address.addressLocality,
+          addressRegion: props.localBusiness.address.addressRegion,
+          postalCode: props.localBusiness.address.postalCode,
+          addressCountry: props.localBusiness.address.addressCountry,
+        },
+        geo: props.localBusiness.geo
+          ? {
+              '@type': 'GeoCoordinates',
+              latitude: props.localBusiness.geo.latitude,
+              longitude: props.localBusiness.geo.longitude,
+            }
+          : undefined,
+        telephone: props.localBusiness.telephone,
+        priceRange: props.localBusiness.priceRange,
+      };
+
+    case 'product':
+      if (!props.product) return null;
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: props.product.name,
+        description: props.product.description,
+        brand: props.product.brand
+          ? {
+              '@type': 'Brand',
+              name: props.product.brand,
+            }
+          : undefined,
+        offers: {
+          '@type': 'Offer',
+          price: props.product.offers.price,
+          priceCurrency: props.product.offers.priceCurrency,
+          availability:
+            props.product.offers.availability || 'https://schema.org/InStock',
+          priceValidUntil: props.product.offers.priceValidUntil,
+        },
+        additionalProperty: props.product.additionalProperty?.map((prop) => ({
+          '@type': 'PropertyValue',
+          name: prop.name,
+          value: prop.value,
+        })),
+      };
+
+    case 'faqPage':
+      if (!props.faqItems || props.faqItems.length === 0) return null;
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: props.faqItems.map((item) => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: item.answer,
+          },
+        })),
+      };
+
+    case 'breadcrumb':
+      if (!props.breadcrumbs || props.breadcrumbs.length === 0) return null;
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: props.breadcrumbs.map((crumb, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: crumb.name,
+          item: crumb.url,
+        })),
+      };
+
+    case 'website':
+      if (!props.website) return null;
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: props.website.name,
+        url: props.website.url,
+        potentialAction: props.website.potentialAction
+          ? {
+              '@type': 'SearchAction',
+              target: props.website.potentialAction.target,
+              'query-input': props.website.potentialAction.queryInput,
+            }
+          : undefined,
+      };
+
+    case 'multiple':
+      if (!props.multiple || props.multiple.length === 0) return null;
+      return props.multiple.map((item) => {
+        // Recursively generate schemas for each type
+        const nestedProps: StructuredDataProps = {
+          type: item.type as any,
+          ...item.data,
+        };
+        return generateSchemaFromProps(nestedProps);
+      });
+
+    default:
+      return null;
+  }
+}
+
 export default function StructuredData({
   type,
   organization,
@@ -91,147 +225,17 @@ export default function StructuredData({
   breadcrumbs,
   website,
   multiple,
-}: StructuredDataProps) {
-  const generateSchema = () => {
-    switch (type) {
-      case 'organization':
-        if (!organization) return null;
-        return {
-          '@context': 'https://schema.org',
-          '@type': 'Organization',
-          name: organization.name,
-          url: organization.url,
-          logo: organization.logo,
-          description: organization.description,
-          contactPoint: organization.contactPoint
-            ? {
-                '@type': 'ContactPoint',
-                telephone: organization.contactPoint.telephone,
-                contactType: organization.contactPoint.contactType,
-              }
-            : undefined,
-        };
-
-      case 'localBusiness':
-        if (!localBusiness) return null;
-        return {
-          '@context': 'https://schema.org',
-          '@type': 'LocalBusiness',
-          name: localBusiness.name,
-          address: {
-            '@type': 'PostalAddress',
-            streetAddress: localBusiness.address.streetAddress,
-            addressLocality: localBusiness.address.addressLocality,
-            addressRegion: localBusiness.address.addressRegion,
-            postalCode: localBusiness.address.postalCode,
-            addressCountry: localBusiness.address.addressCountry,
-          },
-          geo: localBusiness.geo
-            ? {
-                '@type': 'GeoCoordinates',
-                latitude: localBusiness.geo.latitude,
-                longitude: localBusiness.geo.longitude,
-              }
-            : undefined,
-          telephone: localBusiness.telephone,
-          priceRange: localBusiness.priceRange,
-        };
-
-      case 'product':
-        if (!product) return null;
-        return {
-          '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: product.name,
-          description: product.description,
-          brand: product.brand
-            ? {
-                '@type': 'Brand',
-                name: product.brand,
-              }
-            : undefined,
-          offers: {
-            '@type': 'Offer',
-            price: product.offers.price,
-            priceCurrency: product.offers.priceCurrency,
-            availability:
-              product.offers.availability || 'https://schema.org/InStock',
-            priceValidUntil: product.offers.priceValidUntil,
-          },
-          additionalProperty: product.additionalProperty?.map((prop) => ({
-            '@type': 'PropertyValue',
-            name: prop.name,
-            value: prop.value,
-          })),
-        };
-
-      case 'faqPage':
-        if (!faqItems || faqItems.length === 0) return null;
-        return {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: faqItems.map((item) => ({
-            '@type': 'Question',
-            name: item.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: item.answer,
-            },
-          })),
-        };
-
-      case 'breadcrumb':
-        if (!breadcrumbs || breadcrumbs.length === 0) return null;
-        return {
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: breadcrumbs.map((crumb, index) => ({
-            '@type': 'ListItem',
-            position: index + 1,
-            name: crumb.name,
-            item: crumb.url,
-          })),
-        };
-
-      case 'website':
-        if (!website) return null;
-        return {
-          '@context': 'https://schema.org',
-          '@type': 'WebSite',
-          name: website.name,
-          url: website.url,
-          potentialAction: website.potentialAction
-            ? {
-                '@type': 'SearchAction',
-                target: website.potentialAction.target,
-                'query-input': website.potentialAction.queryInput,
-              }
-            : undefined,
-        };
-
-      case 'multiple':
-        if (!multiple || multiple.length === 0) return null;
-        return multiple.map((item) => {
-          // Recursively generate schemas for each type
-          const props = {
-            type: item.type as any,
-            ...item.data,
-          };
-          return generateSchemaForType(props);
-        });
-
-      default:
-        return null;
-    }
-  };
-
-  const generateSchemaForType = (props: any) => {
-    // Helper to generate schema for nested types
-    const structuredData = StructuredData(props);
-    return structuredData ? JSON.parse(structuredData.props.children) : null;
-  };
-
-  const schema = generateSchema();
+}: StructuredDataProps): React.ReactElement | null {
+  const schema: any = generateSchemaFromProps({
+    type,
+    organization,
+    localBusiness,
+    product,
+    faqItems,
+    breadcrumbs,
+    website,
+    multiple,
+  });
 
   if (!schema) return null;
 
