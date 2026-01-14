@@ -131,10 +131,10 @@ export default function UsageCalculatorQuiz({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 max-w-2xl mx-auto">
+    <div className="bg-white rounded-lg shadow-lg p-4 md:p-6 max-w-2xl mx-auto">
       {/* Progress Indicator */}
       {currentStep <= totalSteps && (
-        <div className="mb-8">
+        <div className="mb-4">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm font-medium text-gray-600">
               Step {currentStep} of {totalSteps}
@@ -154,14 +154,14 @@ export default function UsageCalculatorQuiz({
 
       {/* Question 1: Property Type */}
       {currentStep === 1 && (
-        <div className="space-y-6 animate-fadeIn">
-          <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <div className="space-y-4 animate-fadeIn">
+          <div className="text-center mb-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">
               What type of property do you have?
             </h2>
-            <p className="text-gray-600">This helps us estimate your base energy usage</p>
+            <p className="text-sm text-gray-600">This helps us estimate your base energy usage</p>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             {[
               { value: 'house' as PropertyType, label: 'House', icon: Home },
               { value: 'apartment' as PropertyType, label: 'Apartment', icon: Building2 },
@@ -173,16 +173,16 @@ export default function UsageCalculatorQuiz({
                 <button
                   key={option.value}
                   onClick={() => setPropertyType(option.value)}
-                  className={`p-6 rounded-lg border-2 transition-all duration-200 ${
+                  className={`p-4 rounded-lg border-2 transition-all duration-200 ${
                     propertyType === option.value
                       ? 'border-blue-600 bg-blue-50 shadow-md'
                       : 'border-gray-300 hover:border-blue-400 hover:shadow'
                   }`}
                 >
-                  <Icon className={`w-10 h-10 mx-auto mb-3 ${
+                  <Icon className={`w-8 h-8 mx-auto mb-2 ${
                     propertyType === option.value ? 'text-blue-600' : 'text-gray-600'
                   }`} />
-                  <div className={`font-semibold ${
+                  <div className={`font-semibold text-sm ${
                     propertyType === option.value ? 'text-blue-600' : 'text-gray-900'
                   }`}>
                     {option.label}
@@ -196,26 +196,26 @@ export default function UsageCalculatorQuiz({
 
       {/* Question 2: Bedrooms */}
       {currentStep === 2 && (
-        <div className="space-y-6 animate-fadeIn">
-          <div className="text-center mb-6">
-            <Users className="w-12 h-12 text-blue-600 mx-auto mb-3" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <div className="space-y-4 animate-fadeIn">
+          <div className="text-center mb-3">
+            <Users className="w-10 h-10 text-blue-600 mx-auto mb-2" />
+            <h2 className="text-xl font-bold text-gray-900 mb-1">
               How many bedrooms?
             </h2>
-            <p className="text-gray-600">More bedrooms typically mean higher energy use</p>
+            <p className="text-sm text-gray-600">More bedrooms typically mean higher energy use</p>
           </div>
-          <div className="grid grid-cols-5 gap-3">
+          <div className="grid grid-cols-5 gap-2">
             {(['1', '2', '3', '4', '5+'] as Bedrooms[]).map((num) => (
               <button
                 key={num}
                 onClick={() => setBedrooms(num)}
-                className={`p-4 rounded-lg border-2 transition-all duration-200 ${
+                className={`p-3 rounded-lg border-2 transition-all duration-200 ${
                   bedrooms === num
                     ? 'border-blue-600 bg-blue-50 shadow-md'
                     : 'border-gray-300 hover:border-blue-400 hover:shadow'
                 }`}
               >
-                <div className={`text-2xl font-bold ${
+                <div className={`text-xl font-bold ${
                   bedrooms === num ? 'text-blue-600' : 'text-gray-900'
                 }`}>
                   {num}
@@ -228,15 +228,15 @@ export default function UsageCalculatorQuiz({
 
       {/* Question 3: Square Footage */}
       {currentStep === 3 && (
-        <div className="space-y-6 animate-fadeIn">
-          <div className="text-center mb-6">
-            <Ruler className="w-12 h-12 text-blue-600 mx-auto mb-3" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <div className="space-y-4 animate-fadeIn">
+          <div className="text-center mb-3">
+            <Ruler className="w-10 h-10 text-blue-600 mx-auto mb-2" />
+            <h2 className="text-xl font-bold text-gray-900 mb-1">
               What's your square footage?
             </h2>
-            <p className="text-gray-600">Larger spaces require more heating and cooling</p>
+            <p className="text-sm text-gray-600">Larger spaces require more heating and cooling</p>
           </div>
-          <div className="grid grid-cols-1 gap-3">
+          <div className="grid grid-cols-1 gap-2">
             {[
               { value: '<1000' as SquareFootage, label: 'Under 1,000 sq ft' },
               { value: '1000-1500' as SquareFootage, label: '1,000 - 1,500 sq ft' },
@@ -247,13 +247,13 @@ export default function UsageCalculatorQuiz({
               <button
                 key={option.value}
                 onClick={() => setSqft(option.value)}
-                className={`p-4 rounded-lg border-2 transition-all duration-200 text-left ${
+                className={`p-3 rounded-lg border-2 transition-all duration-200 text-left ${
                   sqft === option.value
                     ? 'border-blue-600 bg-blue-50 shadow-md'
                     : 'border-gray-300 hover:border-blue-400 hover:shadow'
                 }`}
               >
-                <div className={`font-semibold ${
+                <div className={`font-semibold text-sm ${
                   sqft === option.value ? 'text-blue-600' : 'text-gray-900'
                 }`}>
                   {option.label}
@@ -266,15 +266,15 @@ export default function UsageCalculatorQuiz({
 
       {/* Question 4: Electric Vehicle */}
       {currentStep === 4 && (
-        <div className="space-y-6 animate-fadeIn">
-          <div className="text-center mb-6">
-            <Car className="w-12 h-12 text-blue-600 mx-auto mb-3" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <div className="space-y-4 animate-fadeIn">
+          <div className="text-center mb-3">
+            <Car className="w-10 h-10 text-blue-600 mx-auto mb-2" />
+            <h2 className="text-xl font-bold text-gray-900 mb-1">
               Do you have an Electric Vehicle?
             </h2>
-            <p className="text-gray-600">Charging at home significantly increases usage</p>
+            <p className="text-sm text-gray-600">Charging at home significantly increases usage</p>
           </div>
-          <div className="grid grid-cols-1 gap-3">
+          <div className="grid grid-cols-1 gap-2">
             {[
               { value: 'yes' as EVStatus, label: 'Yes, I charge at home', extra: '+350 kWh/month' },
               { value: 'planning' as EVStatus, label: 'Planning to get one', extra: '+175 kWh/month' },
@@ -283,18 +283,18 @@ export default function UsageCalculatorQuiz({
               <button
                 key={option.value}
                 onClick={() => setEV(option.value)}
-                className={`p-4 rounded-lg border-2 transition-all duration-200 text-left ${
+                className={`p-3 rounded-lg border-2 transition-all duration-200 text-left ${
                   ev === option.value
                     ? 'border-blue-600 bg-blue-50 shadow-md'
                     : 'border-gray-300 hover:border-blue-400 hover:shadow'
                 }`}
               >
-                <div className={`font-semibold mb-1 ${
+                <div className={`font-semibold text-sm mb-0.5 ${
                   ev === option.value ? 'text-blue-600' : 'text-gray-900'
                 }`}>
                   {option.label}
                 </div>
-                <div className="text-sm text-gray-500">{option.extra}</div>
+                <div className="text-xs text-gray-500">{option.extra}</div>
               </button>
             ))}
           </div>
@@ -303,15 +303,15 @@ export default function UsageCalculatorQuiz({
 
       {/* Question 5: Solar Panels */}
       {currentStep === 5 && (
-        <div className="space-y-6 animate-fadeIn">
-          <div className="text-center mb-6">
-            <Sun className="w-12 h-12 text-blue-600 mx-auto mb-3" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <div className="space-y-4 animate-fadeIn">
+          <div className="text-center mb-3">
+            <Sun className="w-10 h-10 text-blue-600 mx-auto mb-2" />
+            <h2 className="text-xl font-bold text-gray-900 mb-1">
               Do you have Solar Panels?
             </h2>
-            <p className="text-gray-600">Solar can significantly reduce grid usage</p>
+            <p className="text-sm text-gray-600">Solar can significantly reduce grid usage</p>
           </div>
-          <div className="grid grid-cols-1 gap-3">
+          <div className="grid grid-cols-1 gap-2">
             {[
               { value: 'yes' as SolarStatus, label: 'Yes, I have solar panels', extra: '-40% usage' },
               { value: 'considering' as SolarStatus, label: 'Considering installation', extra: 'No change yet' },
@@ -320,18 +320,18 @@ export default function UsageCalculatorQuiz({
               <button
                 key={option.value}
                 onClick={() => setSolar(option.value)}
-                className={`p-4 rounded-lg border-2 transition-all duration-200 text-left ${
+                className={`p-3 rounded-lg border-2 transition-all duration-200 text-left ${
                   solar === option.value
                     ? 'border-blue-600 bg-blue-50 shadow-md'
                     : 'border-gray-300 hover:border-blue-400 hover:shadow'
                 }`}
               >
-                <div className={`font-semibold mb-1 ${
+                <div className={`font-semibold text-sm mb-0.5 ${
                   solar === option.value ? 'text-blue-600' : 'text-gray-900'
                 }`}>
                   {option.label}
                 </div>
-                <div className="text-sm text-gray-500">{option.extra}</div>
+                <div className="text-xs text-gray-500">{option.extra}</div>
               </button>
             ))}
           </div>
@@ -411,7 +411,7 @@ export default function UsageCalculatorQuiz({
 
       {/* Navigation Buttons */}
       {currentStep <= totalSteps && (
-        <div className="flex justify-between mt-8">
+        <div className="flex justify-between mt-5">
           <button
             onClick={handleBack}
             disabled={currentStep === 1}
