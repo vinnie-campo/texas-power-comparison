@@ -114,9 +114,10 @@ export default async function Home() {
               </h1>
 
               {/* Subheadline */}
-              <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-                Compare electricity rates from top Texas providers and save up to 40% on your monthly bill
-              </p>
+              <div className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                <p className="mb-1">Find the best electricity plan for your home.</p>
+                <p className="font-bold">Save up to 40% on your monthly bill.</p>
+              </div>
 
               {/* ZIP Search Component - Inline Variant */}
               <div className="mb-8">
