@@ -110,7 +110,7 @@ export default async function Home() {
               {/* Trust Badge */}
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-5 py-2.5 mb-8">
                 <Award className="w-4 h-4" />
-                <span className="text-sm font-medium">
+                <span className="text-sm font-semibold">
                   Trusted by 50,000+ Texans
                 </span>
               </div>
@@ -118,7 +118,7 @@ export default async function Home() {
               {/* Main Headline */}
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight">
                 Compare Texas Electricity Rates{' '}
-                <span className="text-[#00D4AA]">in Seconds</span>
+                <span className="text-[#00943C]">in Seconds</span>
               </h1>
 
               {/* Subheadline */}
@@ -135,17 +135,17 @@ export default async function Home() {
               </div>
 
               {/* Quick Stats */}
-              <div className="flex flex-wrap items-center justify-center gap-8 mt-10 text-sm text-white/90">
+              <div className="flex flex-wrap items-center justify-center gap-8 mt-10 text-sm text-white/90 font-medium">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-[#00D4AA]" />
+                  <CheckCircle className="w-5 h-5 text-[#00943C]" />
                   <span>100% Free Service</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-[#00D4AA]" />
+                  <CheckCircle className="w-5 h-5 text-[#00943C]" />
                   <span>No Hidden Fees</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-[#00D4AA]" />
+                  <CheckCircle className="w-5 h-5 text-[#00943C]" />
                   <span>Takes 2 Minutes</span>
                 </div>
               </div>
@@ -154,32 +154,32 @@ export default async function Home() {
         </section>
 
         {/* STATS/TRUST SECTION */}
-        <section className="py-16 bg-light-blue">
+        <section className="py-16 bg-[#F5F7FA]">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-primary-pink mb-2">
+                <div className="text-4xl md:text-5xl font-bold text-[#003366] mb-2">
                   {cityCount || 250}+
                 </div>
-                <div className="text-secondary-blue font-medium">Cities Covered</div>
+                <div className="text-[#003366] font-semibold">Cities Covered</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-primary-pink mb-2">
+                <div className="text-4xl md:text-5xl font-bold text-[#003366] mb-2">
                   {providerCount || 8}
                 </div>
-                <div className="text-secondary-blue font-medium">Top Providers</div>
+                <div className="text-[#003366] font-semibold">Top Providers</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-primary-pink mb-2">
+                <div className="text-4xl md:text-5xl font-bold text-[#003366] mb-2">
                   {planCount || 29}+
                 </div>
-                <div className="text-secondary-blue font-medium">Plans Available</div>
+                <div className="text-[#003366] font-semibold">Plans Available</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-accent-teal mb-2">
+                <div className="text-4xl md:text-5xl font-bold text-[#00943C] mb-2">
                   $300+
                 </div>
-                <div className="text-secondary-blue font-medium">
+                <div className="text-[#003366] font-semibold">
                   Avg. Annual Savings
                 </div>
               </div>
@@ -191,10 +191,10 @@ export default async function Home() {
         <section className="py-20 md:py-28">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-secondary-blue mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#003366] mb-4">
                 How It Works
               </h2>
-              <p className="text-lg text-secondary-blue/70 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 Finding the best electricity rate is simple with our free
                 comparison tool
               </p>
@@ -204,16 +204,16 @@ export default async function Home() {
               {/* Step 1 */}
               <div className="relative">
                 <div className="card-bulb p-10 text-center">
-                  <div className="w-20 h-20 bg-[#E8F4FD] rounded-full flex items-center justify-center mx-auto mb-6">
-                    <MapPin className="w-10 h-10 text-[#E5007D]" />
+                  <div className="w-20 h-20 bg-[#F5F7FA] rounded-full flex items-center justify-center mx-auto mb-6">
+                    <MapPin className="w-10 h-10 text-[#003366]" />
                   </div>
-                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-14 h-14 bg-primary-pink rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-14 h-14 bg-[#003366] rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
                     1
                   </div>
-                  <h3 className="text-2xl font-bold text-secondary-blue mb-3">
+                  <h3 className="text-2xl font-bold text-[#003366] mb-3">
                     Enter Your ZIP Code
                   </h3>
-                  <p className="text-secondary-blue/70">
+                  <p className="text-gray-600">
                     Tell us where you live to see plans available in your area
                   </p>
                 </div>
@@ -222,16 +222,16 @@ export default async function Home() {
               {/* Step 2 */}
               <div className="relative">
                 <div className="card-bulb p-10 text-center">
-                  <div className="w-20 h-20 bg-[#E8F4FD] rounded-full flex items-center justify-center mx-auto mb-6">
-                    <BarChart className="w-10 h-10 text-[#E5007D]" />
+                  <div className="w-20 h-20 bg-[#F5F7FA] rounded-full flex items-center justify-center mx-auto mb-6">
+                    <BarChart className="w-10 h-10 text-[#003366]" />
                   </div>
-                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-14 h-14 bg-primary-pink rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-14 h-14 bg-[#003366] rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
                     2
                   </div>
-                  <h3 className="text-2xl font-bold text-secondary-blue mb-3">
+                  <h3 className="text-2xl font-bold text-[#003366] mb-3">
                     Compare Personalized Plans
                   </h3>
-                  <p className="text-secondary-blue/70">
+                  <p className="text-gray-600">
                     See side-by-side comparisons based on your actual usage
                   </p>
                 </div>
@@ -240,16 +240,16 @@ export default async function Home() {
               {/* Step 3 */}
               <div className="relative">
                 <div className="card-bulb p-10 text-center">
-                  <div className="w-20 h-20 bg-[#E8F4FD] rounded-full flex items-center justify-center mx-auto mb-6">
-                    <DollarSign className="w-10 h-10 text-[#00D4AA]" />
+                  <div className="w-20 h-20 bg-[#F5F7FA] rounded-full flex items-center justify-center mx-auto mb-6">
+                    <DollarSign className="w-10 h-10 text-[#00943C]" />
                   </div>
-                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-14 h-14 bg-accent-teal rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-14 h-14 bg-[#00943C] rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
                     3
                   </div>
-                  <h3 className="text-2xl font-bold text-secondary-blue mb-3">
+                  <h3 className="text-2xl font-bold text-[#003366] mb-3">
                     Switch & Save
                   </h3>
-                  <p className="text-secondary-blue/70">
+                  <p className="text-gray-600">
                     Enroll online in minutes and start saving on your next bill
                   </p>
                 </div>
@@ -260,7 +260,7 @@ export default async function Home() {
             <div className="text-center mt-12">
               <Link
                 href="/compare"
-                className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg py-4 px-10 rounded-lg transition-colors shadow-lg"
+                className="inline-block bg-[#00943C] hover:bg-[#007830] text-white font-bold text-lg py-4 px-10 rounded-lg transition-all shadow-lg"
               >
                 Start Comparing Rates Now
               </Link>
@@ -456,14 +456,14 @@ export default async function Home() {
         </section>
 
         {/* FINAL CTA SECTION */}
-        <section className="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+        <section className="py-16 md:py-24 bg-hero-gradient text-white">
           <div className="container mx-auto px-4 text-center">
             <div className="max-w-3xl mx-auto">
-              <Zap className="w-16 h-16 text-yellow-400 mx-auto mb-6" />
+              <Zap className="w-16 h-16 text-[#00943C] mx-auto mb-6" />
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
                 Ready to Save on Electricity?
               </h2>
-              <p className="text-xl text-blue-100 mb-8">
+              <p className="text-xl text-white/90 mb-8">
                 Compare rates from top Texas providers and find your perfect plan
               </p>
 
@@ -473,7 +473,7 @@ export default async function Home() {
               </div>
 
               {/* Urgency Text */}
-              <div className="flex flex-wrap items-center justify-center gap-4 text-blue-100">
+              <div className="flex flex-wrap items-center justify-center gap-4 text-white/90 font-medium">
                 <div className="flex items-center gap-2">
                   <Clock className="w-5 h-5" />
                   <span>Takes less than 2 minutes</span>

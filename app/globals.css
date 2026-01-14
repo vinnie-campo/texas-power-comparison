@@ -3,17 +3,15 @@
 
 :root {
   /* Brand Colors - Bulb Energy Inspired */
-  --primary-pink: #E5007D;
-  --secondary-blue: #1E1E50;
-  --light-blue-bg: #E8F4FD;
-  --accent-teal: #00D4AA;
+  --primary-green: #00943C;
+  --primary-blue: #003366;
+  --light-bg: #F5F7FA;
   --white: #FFFFFF;
-  --light-gray: #F5F5F5;
-  --dark-text: #1E1E50;
+  --dark-text: #003366;
 
   /* Legacy variables */
   --background: #ffffff;
-  --foreground: #1E1E50;
+  --foreground: #003366;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,56 +39,52 @@ body {
 
   /* Brand Button Styles */
   .btn-primary {
-    @apply bg-[#E5007D] text-white rounded-full px-6 py-3 font-medium transition-all duration-200 hover:scale-105 hover:shadow-lg;
+    @apply bg-[#00943C] text-white rounded-lg px-6 py-3 font-semibold transition-all duration-200 hover:bg-[#007830] hover:shadow-lg;
   }
 
   .btn-secondary {
-    @apply bg-white text-[#E5007D] border-2 border-[#E5007D] rounded-full px-6 py-3 font-medium transition-all duration-200 hover:scale-105 hover:shadow-lg;
+    @apply bg-[#003366] text-white rounded-lg px-6 py-3 font-semibold transition-all duration-200 hover:bg-[#002244] hover:shadow-lg;
+  }
+
+  .btn-outline {
+    @apply bg-white text-[#003366] border-2 border-[#003366] rounded-lg px-6 py-3 font-semibold transition-all duration-200 hover:bg-[#F5F7FA] hover:shadow-md;
   }
 
   /* Card Styles */
   .card-bulb {
-    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1;
+    @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 border border-gray-200;
   }
 
-  /* Pink Gradient Background */
-  .bg-pink-gradient {
-    background: linear-gradient(135deg, #E5007D 0%, #B8006B 100%);
+  /* Blue Gradient Background */
+  .bg-blue-gradient {
+    background: linear-gradient(135deg, #003366 0%, #004488 100%);
   }
 
   /* Hero Gradient */
   .bg-hero-gradient {
-    background: linear-gradient(135deg, #E5007D 0%, #7E1F8F 100%);
+    background: linear-gradient(135deg, #003366 0%, #005599 100%);
   }
 
   /* Text Colors */
-  .text-primary-pink {
-    color: #E5007D;
+  .text-primary-green {
+    color: #00943C;
   }
 
-  .text-secondary-blue {
-    color: #1E1E50;
-  }
-
-  .text-accent-teal {
-    color: #00D4AA;
+  .text-primary-blue {
+    color: #003366;
   }
 
   /* Background Colors */
-  .bg-primary-pink {
-    background-color: #E5007D;
+  .bg-primary-green {
+    background-color: #00943C;
   }
 
-  .bg-secondary-blue {
-    background-color: #1E1E50;
+  .bg-primary-blue {
+    background-color: #003366;
   }
 
-  .bg-light-blue {
-    background-color: #E8F4FD;
-  }
-
-  .bg-accent-teal {
-    background-color: #00D4AA;
+  .bg-light-bg {
+    background-color: #F5F7FA;
   }
 }
 

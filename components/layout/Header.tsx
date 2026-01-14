@@ -28,17 +28,17 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-pink-gradient shadow-lg">
+    <header className="sticky top-0 z-50 bg-white shadow-md border-b border-gray-200">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 font-bold text-xl text-white hover:opacity-90 transition-opacity"
+            className="flex items-center gap-2 font-bold text-xl text-[#003366] hover:text-[#00943C] transition-colors"
             onClick={closeMobileMenu}
           >
-            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md">
-              <Zap className="w-6 h-6 text-[#E5007D]" fill="#E5007D" />
+            <div className="w-10 h-10 bg-[#00943C] rounded-full flex items-center justify-center shadow-md">
+              <Zap className="w-6 h-6 text-white" fill="white" />
             </div>
             <span className="hidden sm:inline">Texas Power Compare</span>
             <span className="sm:hidden">TPC</span>
@@ -50,10 +50,10 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-all ${
+                className={`text-sm font-semibold transition-all ${
                   isActive(link.href)
-                    ? 'text-white border-b-2 border-white'
-                    : 'text-white/80 hover:text-white'
+                    ? 'text-[#00943C] border-b-2 border-[#00943C]'
+                    : 'text-[#003366] hover:text-[#00943C]'
                 } py-1`}
               >
                 {link.label}
@@ -66,16 +66,16 @@ export default function Header() {
             {/* Phone Number */}
             <a
               href="tel:1-800-555-0123"
-              className="flex items-center gap-2 text-sm text-white/90 hover:text-white transition-colors"
+              className="flex items-center gap-2 text-sm text-[#003366] hover:text-[#00943C] transition-colors"
             >
               <Phone className="w-4 h-4" />
-              <span className="font-medium">1-800-555-0123</span>
+              <span className="font-semibold">1-800-555-0123</span>
             </a>
 
             {/* CTA Button */}
             <Link
               href="/compare"
-              className="bg-white text-[#E5007D] font-semibold py-2.5 px-6 rounded-full transition-all duration-200 hover:scale-105 hover:shadow-xl"
+              className="bg-[#00943C] text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-200 hover:bg-[#007830] hover:shadow-lg"
             >
               Find Your Plan
             </Link>
@@ -84,7 +84,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-white hover:opacity-80 transition-opacity"
+            className="lg:hidden p-2 text-[#003366] hover:text-[#00943C] transition-colors"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -112,10 +112,10 @@ export default function Header() {
       >
         <div className="h-full flex flex-col">
           {/* Mobile Menu Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-pink-gradient">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-[#003366]">
             <div className="flex items-center gap-2 font-bold text-lg text-white">
-              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                <Zap className="w-5 h-5 text-[#E5007D]" fill="#E5007D" />
+              <div className="w-8 h-8 bg-[#00943C] rounded-full flex items-center justify-center">
+                <Zap className="w-5 h-5 text-white" fill="white" />
               </div>
               <span>Texas Power Compare</span>
             </div>
@@ -136,10 +136,10 @@ export default function Header() {
                   <Link
                     href={link.href}
                     onClick={closeMobileMenu}
-                    className={`block py-3 px-4 rounded-2xl font-medium transition-all ${
+                    className={`block py-3 px-4 rounded-lg font-semibold transition-all ${
                       isActive(link.href)
-                        ? 'bg-[#E8F4FD] text-[#E5007D]'
-                        : 'text-[#1E1E50] hover:bg-[#F5F5F5]'
+                        ? 'bg-[#00943C] text-white'
+                        : 'text-[#003366] hover:bg-[#F5F7FA]'
                     }`}
                   >
                     {link.label}
@@ -154,10 +154,10 @@ export default function Header() {
             {/* Phone Number */}
             <a
               href="tel:1-800-555-0123"
-              className="flex items-center gap-2 text-[#1E1E50] hover:text-[#E5007D] transition-colors py-2"
+              className="flex items-center gap-2 text-[#003366] hover:text-[#00943C] transition-colors py-2"
             >
               <Phone className="w-5 h-5" />
-              <span className="font-medium">1-800-555-0123</span>
+              <span className="font-semibold">1-800-555-0123</span>
             </a>
 
             {/* CTA Button */}

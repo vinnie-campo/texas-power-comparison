@@ -55,12 +55,12 @@ export default function ZipSearch({ onSearch }: ZipSearchProps) {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+      <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-gray-200">
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Label */}
           <label
             htmlFor="zip-code"
-            className="block text-lg font-semibold text-secondary-blue"
+            className="block text-lg font-semibold text-[#003366]"
           >
             Enter Your ZIP Code
           </label>
@@ -76,12 +76,12 @@ export default function ZipSearch({ onSearch }: ZipSearchProps) {
               placeholder="75001"
               maxLength={5}
               className={`
-                w-full px-5 py-4 text-lg border-2 rounded-2xl
-                focus:outline-none focus:ring-2 focus:ring-[#E5007D]
+                w-full px-5 py-4 text-lg border-2 rounded-lg
+                focus:outline-none focus:ring-2 focus:ring-[#00943C]
                 transition-all duration-200
                 ${error
                   ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300 focus:border-[#E5007D]'
+                  : 'border-gray-300 focus:border-[#00943C]'
                 }
               `}
               aria-invalid={error ? 'true' : 'false'}
@@ -112,7 +112,7 @@ export default function ZipSearch({ onSearch }: ZipSearchProps) {
         </form>
 
         {/* Helper Text */}
-        <p className="mt-4 text-sm text-secondary-blue/70 text-center">
+        <p className="mt-4 text-sm text-gray-600 text-center">
           Find the best electricity rates in your area
         </p>
       </div>

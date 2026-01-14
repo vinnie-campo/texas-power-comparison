@@ -72,15 +72,15 @@ export default function PlanDetailsModal({
 
       {/* Modal */}
       <div
-        className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-slideUp"
+        className="relative bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-slideUp border border-gray-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header with Deep Blue Background */}
-        <div className="bg-secondary-blue p-8 rounded-t-2xl relative">
+        <div className="bg-[#003366] p-8 rounded-t-xl relative">
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-colors z-10"
+            className="absolute top-4 right-4 p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors z-10"
             aria-label="Close modal"
           >
             <X className="w-6 h-6" />
@@ -91,7 +91,7 @@ export default function PlanDetailsModal({
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
               {plan.plan_name}
             </h2>
-            <p className="text-lg text-white/80">
+            <p className="text-lg text-white/90">
               {plan.provider?.name || 'Provider'}
             </p>
           </div>
@@ -109,10 +109,10 @@ export default function PlanDetailsModal({
               <ul className="space-y-3">
                 {features.map((feature, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#00D4AA]/10 flex items-center justify-center mt-0.5">
-                      <Check className="w-3.5 h-3.5 text-accent-teal" />
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#00943C]/10 flex items-center justify-center mt-0.5">
+                      <Check className="w-3.5 h-3.5 text-[#00943C]" />
                     </div>
-                    <span className="text-secondary-blue/80 leading-relaxed">
+                    <span className="text-gray-700 leading-relaxed">
                       {feature}
                     </span>
                   </li>
@@ -206,7 +206,7 @@ export default function PlanDetailsModal({
                 {plan.renewable_percentage > 0 && (
                   <div>
                     <span className="text-gray-600">Renewable Energy: </span>
-                    <span className="font-medium text-accent-teal">
+                    <span className="font-semibold text-[#00943C]">
                       {plan.renewable_percentage}%
                     </span>
                   </div>
@@ -231,7 +231,7 @@ export default function PlanDetailsModal({
                 <a
                   href="#"
                   onClick={(e) => e.preventDefault()}
-                  className="flex items-center gap-2 text-sm text-primary-pink hover:opacity-80 transition-opacity"
+                  className="flex items-center gap-2 text-sm text-[#003366] hover:text-[#00943C] transition-colors font-medium"
                 >
                   <ExternalLink className="w-4 h-4" />
                   <span>Electricity Facts Label (EFL)</span>
@@ -239,7 +239,7 @@ export default function PlanDetailsModal({
                 <a
                   href="#"
                   onClick={(e) => e.preventDefault()}
-                  className="flex items-center gap-2 text-sm text-primary-pink hover:opacity-80 transition-opacity"
+                  className="flex items-center gap-2 text-sm text-[#003366] hover:text-[#00943C] transition-colors font-medium"
                 >
                   <ExternalLink className="w-4 h-4" />
                   <span>Terms of Service (TOS)</span>
@@ -247,7 +247,7 @@ export default function PlanDetailsModal({
                 <a
                   href="#"
                   onClick={(e) => e.preventDefault()}
-                  className="flex items-center gap-2 text-sm text-primary-pink hover:opacity-80 transition-opacity"
+                  className="flex items-center gap-2 text-sm text-[#003366] hover:text-[#00943C] transition-colors font-medium"
                 >
                   <ExternalLink className="w-4 h-4" />
                   <span>Your Rights as a Customer (YRAC)</span>

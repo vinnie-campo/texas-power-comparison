@@ -121,7 +121,7 @@ export default function PlanFilters({
           <h3 className="text-lg font-semibold text-gray-900">Filters</h3>
         </div>
         {activeCount > 0 && (
-          <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
+          <span className="text-xs font-semibold text-[#003366] bg-[#F5F7FA] px-2 py-1 rounded-full">
             {activeCount} active
           </span>
         )}
@@ -143,7 +143,7 @@ export default function PlanFilters({
                 type="checkbox"
                 checked={currentFilters.planTypes.includes(option.value)}
                 onChange={() => handlePlanTypeToggle(option.value)}
-                className="w-4 h-4 text-[#E5007D] border-gray-300 rounded focus:ring-2 focus:ring-[#E5007D]"
+                className="w-4 h-4 text-[#00943C] border-gray-300 rounded focus:ring-2 focus:ring-[#00943C]"
               />
               <span className="text-sm text-gray-700">{option.label}</span>
             </label>
@@ -167,7 +167,7 @@ export default function PlanFilters({
                 type="checkbox"
                 checked={currentFilters.contractLengths.includes(option.value)}
                 onChange={() => handleContractLengthToggle(option.value)}
-                className="w-4 h-4 text-[#E5007D] border-gray-300 rounded focus:ring-2 focus:ring-[#E5007D]"
+                className="w-4 h-4 text-[#00943C] border-gray-300 rounded focus:ring-2 focus:ring-[#00943C]"
               />
               <span className="text-sm text-gray-700">{option.label}</span>
             </label>
@@ -192,7 +192,7 @@ export default function PlanFilters({
             step="10"
             value={currentFilters.minRenewable}
             onChange={(e) => handleRenewableChange(parseInt(e.target.value))}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#00D4AA]"
+            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#00943C]"
           />
           <div className="flex justify-between text-xs text-gray-500">
             <span>0%</span>
@@ -218,7 +218,7 @@ export default function PlanFilters({
               placeholder="Search providers..."
               value={providerSearch}
               onChange={(e) => setProviderSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#00943C] focus:border-[#00943C]"
             />
           </div>
 
@@ -234,7 +234,7 @@ export default function PlanFilters({
                     type="checkbox"
                     checked={currentFilters.providers.includes(provider.id)}
                     onChange={() => handleProviderToggle(provider.id)}
-                    className="w-4 h-4 text-[#E5007D] border-gray-300 rounded focus:ring-2 focus:ring-[#E5007D]"
+                    className="w-4 h-4 text-[#00943C] border-gray-300 rounded focus:ring-2 focus:ring-[#00943C]"
                   />
                   <span className="text-sm text-gray-700">{provider.name}</span>
                 </label>

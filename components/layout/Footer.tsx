@@ -28,24 +28,24 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-secondary-blue text-white">
+    <footer className="bg-[#003366] text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Column 1: Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md">
-                <Zap className="w-6 h-6 text-[#E5007D]" fill="#E5007D" />
+              <div className="w-10 h-10 bg-[#00943C] rounded-full flex items-center justify-center shadow-md">
+                <Zap className="w-6 h-6 text-white" fill="white" />
               </div>
               <span className="text-white font-bold text-lg">
                 Texas Power Compare
               </span>
             </div>
-            <p className="text-sm text-white/80">
+            <p className="text-sm text-white/90">
               Find the best electricity rates in Texas
             </p>
-            <p className="text-sm text-white/60">
+            <p className="text-sm text-white/70">
               © {currentYear} Texas Power Compare
             </p>
           </div>
@@ -60,7 +60,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/80 hover:text-[#E5007D] transition-colors"
+                    className="text-sm text-white/90 hover:text-[#00943C] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -79,7 +79,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/80 hover:text-[#E5007D] transition-colors"
+                    className="text-sm text-white/90 hover:text-[#00943C] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -98,8 +98,8 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className={`text-sm text-white/80 hover:text-[#E5007D] transition-colors ${
-                      link.label === 'view all cities' ? 'font-medium' : ''
+                    className={`text-sm text-white/90 hover:text-[#00943C] transition-colors ${
+                      link.label === 'View All Cities' ? 'font-semibold' : ''
                     }`}
                   >
                     {link.label}
@@ -119,21 +119,21 @@ export default function Footer() {
             <div className="flex flex-wrap items-center gap-4 text-sm">
               <Link
                 href="/privacy"
-                className="text-white/70 hover:text-[#E5007D] transition-colors"
+                className="text-white/80 hover:text-[#00943C] transition-colors"
               >
                 Privacy Policy
               </Link>
-              <span className="text-white/30">|</span>
+              <span className="text-white/40">|</span>
               <Link
                 href="/terms"
-                className="text-white/70 hover:text-[#E5007D] transition-colors"
+                className="text-white/80 hover:text-[#00943C] transition-colors"
               >
                 Terms of Service
               </Link>
             </div>
 
             {/* Disclaimer */}
-            <p className="text-xs text-white/50">
+            <p className="text-xs text-white/60">
               Not affiliated with PUCT or Power to Choose
             </p>
           </div>
