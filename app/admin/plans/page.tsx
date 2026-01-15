@@ -1,241 +1,251 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { Plus, Edit, Trash2, ChevronLeft } from 'lucide-react';
+import { useState, useEffect } from 'react'
+import { createClient } from '@supabase/supabase-js'
+import { Star, ExternalLink, Search } from 'lucide-react'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
 
 interface Plan {
-  id: string;
-  plan_name: string;
-  plan_type: string;
-  rate_1000kwh: number;
-  contract_length_months: number;
-  is_active: boolean;
+  id: string
+  plan_name: string
+  rate_1000kwh: number
+  contract_length_months: number
+  plan_type: string
+  is_featured: boolean
+  is_active: boolean
+  affiliate_url: string | null
   provider: {
-    name: string;
-  } | {
-    name: string;
-  }[];
+    name: string
+  }
 }
 
-export default function PlansManagement() {
-  const [plans, setPlans] = useState<Plan[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<'all' | 'active' | 'inactive'>('all');
+export default function AdminPlansPage() {
+  const [plans, setPlans] = useState<Plan[]>([])
+  const [loading, setLoading] = useState(true)
+  const [search, setSearch] = useState('')
+  const [filter, setFilter] = useState<'all' | 'featured'>('all')
+  const [editingUrl, setEditingUrl] = useState<string | null>(null)
+  const [urlValue, setUrlValue] = useState('')
 
   useEffect(() => {
-    fetchPlans();
-  }, []);
+    fetchPlans()
+  }, [])
 
-  const fetchPlans = async () => {
-    try {
-      const response = await fetch('/api/admin/plans');
-      const data = await response.json();
-      setPlans(data);
-    } catch (error) {
-      console.error('Error fetching plans:', error);
-    } finally {
-      setLoading(false);
+  async function fetchPlans() {
+    const { data, error } = await supabase
+      .from('plans')
+      .select(`
+        id,
+        plan_name,
+        rate_1000kwh,
+        contract_length_months,
+        plan_type,
+        is_featured,
+        is_active,
+        affiliate_url,
+        provider:providers(name)
+      `)
+      .eq('is_active', true)
+      .order('rate_1000kwh', { ascending: true })
+      .limit(200)
+
+    if (!error && data) {
+      setPlans(data as Plan[])
     }
-  };
+    setLoading(false)
+  }
 
-  const handleDelete = async (id: string, planName: string) => {
-    if (!confirm(`Are you sure you want to delete "${planName}"?`)) {
-      return;
+  async function toggleFeatured(planId: string, currentValue: boolean) {
+    // Count current featured plans
+    const featuredCount = plans.filter(p => p.is_featured).length
+    
+    // Don't allow more than 3 featured unless we're unfeaturing
+    if (!currentValue && featuredCount >= 3) {
+      alert('Maximum 3 featured plans allowed. Unfeature another plan first.')
+      return
     }
 
-    try {
-      const response = await fetch(`/api/admin/plans/${id}`, {
-        method: 'DELETE',
-      });
+    const { error } = await supabase
+      .from('plans')
+      .update({ is_featured: !currentValue })
+      .eq('id', planId)
 
-      if (response.ok) {
-        setPlans(plans.filter((p) => p.id !== id));
-        alert('Plan deleted successfully');
-      } else {
-        alert('Failed to delete plan');
-      }
-    } catch (error) {
-      console.error('Error deleting plan:', error);
-      alert('Error deleting plan');
+    if (!error) {
+      setPlans(plans.map(p => 
+        p.id === planId ? { ...p, is_featured: !currentValue } : p
+      ))
     }
-  };
+  }
 
-  const filteredPlans = plans.filter((plan) => {
-    if (filter === 'active') return plan.is_active;
-    if (filter === 'inactive') return !plan.is_active;
-    return true;
-  });
+  async function saveAffiliateUrl(planId: string) {
+    const { error } = await supabase
+      .from('plans')
+      .update({ affiliate_url: urlValue || null })
+      .eq('id', planId)
+
+    if (!error) {
+      setPlans(plans.map(p => 
+        p.id === planId ? { ...p, affiliate_url: urlValue || null } : p
+      ))
+      setEditingUrl(null)
+      setUrlValue('')
+    }
+  }
+
+  const filteredPlans = plans.filter(plan => {
+    const matchesSearch = plan.plan_name.toLowerCase().includes(search.toLowerCase()) ||
+      plan.provider.name.toLowerCase().includes(search.toLowerCase())
+    const matchesFilter = filter === 'all' || (filter === 'featured' && plan.is_featured)
+    return matchesSearch && matchesFilter
+  })
+
+  const featuredCount = plans.filter(p => p.is_featured).length
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Header */}
-      <div className="mb-6">
-        <Link
-          href="/admin"
-          className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4"
-        >
-          <ChevronLeft className="w-4 h-4" />
-          Back to Dashboard
-        </Link>
-
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">
-              Electricity Plans
-            </h2>
-            <p className="text-gray-600">
-              Manage all electricity plans in the system
-            </p>
-          </div>
-
-          <Link
-            href="/admin/plans/new"
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg inline-flex items-center gap-2 transition-colors"
-          >
-            <Plus className="w-5 h-5" />
-            Add New Plan
-          </Link>
+    <div className="p-8">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold">Manage Plans</h1>
+        <div className="flex items-center gap-2 bg-yellow-100 px-4 py-2 rounded-lg">
+          <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+          <span className="font-medium">{featuredCount}/3 Featured Plans</span>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-md p-4 mb-6">
-        <div className="flex items-center gap-4">
-          <span className="text-sm font-medium text-gray-700">Filter:</span>
-          <button
-            onClick={() => setFilter('all')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              filter === 'all'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
-          >
-            All Plans ({plans.length})
-          </button>
-          <button
-            onClick={() => setFilter('active')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              filter === 'active'
-                ? 'bg-green-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
-          >
-            Active ({plans.filter((p) => p.is_active).length})
-          </button>
-          <button
-            onClick={() => setFilter('inactive')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              filter === 'inactive'
-                ? 'bg-gray-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
-          >
-            Inactive ({plans.filter((p) => !p.is_active).length})
-          </button>
+      <div className="flex gap-4 mb-6">
+        <div className="relative flex-1 max-w-md">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <input
+            type="text"
+            placeholder="Search plans or providers..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
         </div>
+        <select
+          value={filter}
+          onChange={(e) => setFilter(e.target.value as 'all' | 'featured')}
+          className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="all">All Plans</option>
+          <option value="featured">Featured Only</option>
+        </select>
       </div>
 
       {/* Plans Table */}
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        {loading ? (
-          <div className="p-12 text-center text-gray-600">Loading plans...</div>
-        ) : filteredPlans.length > 0 ? (
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-200">
-                <tr>
-                  <th className="text-left py-4 px-6 text-sm font-semibold text-gray-700">
-                    Provider
-                  </th>
-                  <th className="text-left py-4 px-6 text-sm font-semibold text-gray-700">
-                    Plan Name
-                  </th>
-                  <th className="text-left py-4 px-6 text-sm font-semibold text-gray-700">
-                    Type
-                  </th>
-                  <th className="text-left py-4 px-6 text-sm font-semibold text-gray-700">
-                    Rate @ 1000 kWh
-                  </th>
-                  <th className="text-left py-4 px-6 text-sm font-semibold text-gray-700">
-                    Contract
-                  </th>
-                  <th className="text-left py-4 px-6 text-sm font-semibold text-gray-700">
-                    Status
-                  </th>
-                  <th className="text-right py-4 px-6 text-sm font-semibold text-gray-700">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {filteredPlans.map((plan) => (
-                  <tr key={plan.id} className="hover:bg-gray-50">
-                    <td className="py-4 px-6 text-sm font-medium text-gray-900">
-                      {Array.isArray(plan.provider) ? plan.provider[0]?.name : plan.provider?.name || 'Unknown'}
-                    </td>
-                    <td className="py-4 px-6 text-sm text-gray-900">
-                      {plan.plan_name}
-                    </td>
-                    <td className="py-4 px-6 text-sm text-gray-600">
-                      <span className="inline-flex px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                        {plan.plan_type}
-                      </span>
-                    </td>
-                    <td className="py-4 px-6 text-sm font-semibold text-gray-900">
+      <div className="bg-white rounded-xl shadow overflow-hidden">
+        <table className="w-full">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Featured</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Plan Name</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Provider</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rate</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Term</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Affiliate URL</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200">
+            {loading ? (
+              <tr>
+                <td colSpan={7} className="px-4 py-8 text-center text-gray-500">Loading...</td>
+              </tr>
+            ) : filteredPlans.length === 0 ? (
+              <tr>
+                <td colSpan={7} className="px-4 py-8 text-center text-gray-500">No plans found</td>
+              </tr>
+            ) : (
+              filteredPlans.map(plan => (
+                <tr key={plan.id} className={plan.is_featured ? 'bg-yellow-50' : ''}>
+                  <td className="px-4 py-3">
+                    <button
+                      onClick={() => toggleFeatured(plan.id, plan.is_featured)}
+                      className={`p-2 rounded-lg transition ${
+                        plan.is_featured 
+                          ? 'bg-yellow-400 text-yellow-900' 
+                          : 'bg-gray-100 text-gray-400 hover:bg-yellow-100'
+                      }`}
+                    >
+                      <Star className={`w-5 h-5 ${plan.is_featured ? 'fill-current' : ''}`} />
+                    </button>
+                  </td>
+                  <td className="px-4 py-3 font-medium">{plan.plan_name}</td>
+                  <td className="px-4 py-3 text-gray-600">{plan.provider.name}</td>
+                  <td className="px-4 py-3">
+                    <span className="font-semibold text-green-600">
                       {(plan.rate_1000kwh * 100).toFixed(1)}¢
-                    </td>
-                    <td className="py-4 px-6 text-sm text-gray-600">
-                      {plan.contract_length_months === 0
-                        ? 'Month-to-Month'
-                        : `${plan.contract_length_months} months`}
-                    </td>
-                    <td className="py-4 px-6 text-sm">
-                      <span
-                        className={`inline-flex px-2.5 py-1 rounded-full text-xs font-medium ${
-                          plan.is_active
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-gray-100 text-gray-800'
-                        }`}
-                      >
-                        {plan.is_active ? 'Active' : 'Inactive'}
-                      </span>
-                    </td>
-                    <td className="py-4 px-6 text-sm text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <Link
-                          href={`/admin/plans/${plan.id}/edit`}
-                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                          title="Edit plan"
-                        >
-                          <Edit className="w-4 h-4" />
-                        </Link>
+                    </span>
+                  </td>
+                  <td className="px-4 py-3">{plan.contract_length_months} mo</td>
+                  <td className="px-4 py-3">
+                    <span className={`px-2 py-1 text-xs rounded-full ${
+                      plan.plan_type === 'Fixed' ? 'bg-blue-100 text-blue-800' :
+                      plan.plan_type === 'Variable' ? 'bg-orange-100 text-orange-800' :
+                      'bg-purple-100 text-purple-800'
+                    }`}>
+                      {plan.plan_type}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3">
+                    {editingUrl === plan.id ? (
+                      <div className="flex gap-2">
+                        <input
+                          type="url"
+                          value={urlValue}
+                          onChange={(e) => setUrlValue(e.target.value)}
+                          placeholder="https://..."
+                          className="flex-1 px-2 py-1 text-sm border rounded"
+                        />
                         <button
-                          onClick={() => handleDelete(plan.id, plan.plan_name)}
-                          className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                          title="Delete plan"
+                          onClick={() => saveAffiliateUrl(plan.id)}
+                          className="px-2 py-1 text-sm bg-green-600 text-white rounded"
                         >
-                          <Trash2 className="w-4 h-4" />
+                          Save
+                        </button>
+                        <button
+                          onClick={() => { setEditingUrl(null); setUrlValue(''); }}
+                          className="px-2 py-1 text-sm bg-gray-300 rounded"
+                        >
+                          Cancel
                         </button>
                       </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <div className="p-12 text-center">
-            <p className="text-gray-600 mb-4">No plans found</p>
-            <Link
-              href="/admin/plans/new"
-              className="text-blue-600 hover:text-blue-700 font-medium"
-            >
-              Add your first plan →
-            </Link>
-          </div>
-        )}
+                    ) : (
+                      <div className="flex items-center gap-2">
+                        {plan.affiliate_url ? (
+                          <>
+                            <a 
+                              href={plan.affiliate_url} 
+                              target="_blank" 
+                              className="text-blue-600 hover:underline text-sm truncate max-w-[150px]"
+                            >
+                              {plan.affiliate_url}
+                            </a>
+                            <ExternalLink className="w-3 h-3 text-gray-400" />
+                          </>
+                        ) : (
+                          <span className="text-gray-400 text-sm">Not set</span>
+                        )}
+                        <button
+                          onClick={() => { setEditingUrl(plan.id); setUrlValue(plan.affiliate_url || ''); }}
+                          className="ml-auto px-2 py-1 text-xs bg-gray-100 hover:bg-gray-200 rounded"
+                        >
+                          Edit
+                        </button>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
-  );
+  )
 }
