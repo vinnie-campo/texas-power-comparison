@@ -112,6 +112,7 @@ export default function FeaturedPlans({ zip }: { zip?: string }) {
               </div>
               
               
+                <a
                 href={plan.affiliate_url || `/compare?plan=${plan.id}`}
                 target={plan.affiliate_url ? '_blank' : '_self'}
                 className="block w-full bg-green-600 hover:bg-green-700 text-white text-center py-3 rounded-lg font-semibold transition"

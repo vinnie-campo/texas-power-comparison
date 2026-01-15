@@ -7,6 +7,7 @@ import { PlanWithProvider } from '@/types/database';
 import ComparePageClient from '@/components/compare/ComparePageClient';
 import ZipSearch from '@/components/search/ZipSearch';
 import UsageQuizWrapper from '@/components/compare/UsageQuizWrapper';
+import FeaturedPlans from '@/components/plans/FeaturedPlans';
 
 // Generate metadata for SEO
 export const metadata: Metadata = {
@@ -317,12 +318,15 @@ export default async function ComparePage({
               </Link>
             </div>
           ) : (
-            <ComparePageClient
+            <>
+            <FeaturedPlans zip={zipCode} />
+          <ComparePageClient
               plans={plans}
               zipCode={zipCode}
               initialUsage={calculatedUsage}
               breakdown={breakdown || undefined}
             />
+          </>
           )}
         </Suspense>
       </div>
