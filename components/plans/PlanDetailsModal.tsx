@@ -48,13 +48,27 @@ export default function PlanDetailsModal({
 
   // Parse features from JSON
   let features: string[] = [];
+  let eflUrl: string | null = null;
+  let tosUrl: string | null = null;
+  let yracUrl: string | null = null;
+
   if (plan.features) {
-    try {
-      features = typeof plan.features === 'string'
-        ? JSON.parse(plan.features)
-        : plan.features;
-    } catch (e) {
-      features = [];
+    const featuresObj = typeof plan.features === 'string'
+      ? JSON.parse(plan.features)
+      : plan.features;
+
+    // Extract document URLs
+    if (featuresObj && typeof featuresObj === 'object') {
+      eflUrl = featuresObj.eflUrl || null;
+      tosUrl = featuresObj.tosUrl || null;
+      yracUrl = featuresObj.yracUrl || null;
+
+      // Extract feature list if it exists
+      if (Array.isArray(featuresObj.list)) {
+        features = featuresObj.list;
+      } else if (Array.isArray(featuresObj)) {
+        features = featuresObj;
+      }
     }
   }
 
@@ -228,30 +242,54 @@ export default function PlanDetailsModal({
                 Plan Documents
               </h4>
               <div className="space-y-2">
-                <a
-                  href="#"
-                  onClick={(e) => e.preventDefault()}
-                  className="flex items-center gap-2 text-sm text-[#003366] hover:text-[#00943C] transition-colors font-medium"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  <span>Electricity Facts Label (EFL)</span>
-                </a>
-                <a
-                  href="#"
-                  onClick={(e) => e.preventDefault()}
-                  className="flex items-center gap-2 text-sm text-[#003366] hover:text-[#00943C] transition-colors font-medium"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  <span>Terms of Service (TOS)</span>
-                </a>
-                <a
-                  href="#"
-                  onClick={(e) => e.preventDefault()}
-                  className="flex items-center gap-2 text-sm text-[#003366] hover:text-[#00943C] transition-colors font-medium"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  <span>Your Rights as a Customer (YRAC)</span>
-                </a>
+                {eflUrl ? (
+                  <a
+                    href={eflUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-[#003366] hover:text-[#00943C] transition-colors font-medium"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Electricity Facts Label (EFL)</span>
+                  </a>
+                ) : (
+                  <span className="flex items-center gap-2 text-sm text-gray-400">
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Electricity Facts Label (EFL)</span>
+                  </span>
+                )}
+                {tosUrl ? (
+                  <a
+                    href={tosUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-[#003366] hover:text-[#00943C] transition-colors font-medium"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Terms of Service (TOS)</span>
+                  </a>
+                ) : (
+                  <span className="flex items-center gap-2 text-sm text-gray-400">
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Terms of Service (TOS)</span>
+                  </span>
+                )}
+                {yracUrl ? (
+                  <a
+                    href={yracUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-[#003366] hover:text-[#00943C] transition-colors font-medium"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Your Rights as a Customer (YRAC)</span>
+                  </a>
+                ) : (
+                  <span className="flex items-center gap-2 text-sm text-gray-400">
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Your Rights as a Customer (YRAC)</span>
+                  </span>
+                )}
               </div>
             </div>
           </div>

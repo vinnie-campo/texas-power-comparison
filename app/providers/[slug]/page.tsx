@@ -15,9 +15,10 @@ import {
 } from 'lucide-react';
 import ProviderLogo from '@/components/ui/ProviderLogo';
 import { createServerClient, createStaticClient } from '@/lib/supabase';
-import { PlanWithProvider } from '@/types/database';
+import { Plan } from '@/types/database';
 import StructuredData from '@/components/seo/StructuredData';
 import FAQSection, { FAQItem } from '@/components/content/FAQSection';
+import ProviderPlansList from '@/components/providers/ProviderPlansList';
 
 // Generate static params for all providers
 export async function generateStaticParams() {
@@ -127,7 +128,7 @@ export default async function ProviderPage({
     .eq('is_active', true)
     .order('rate_1000kwh', { ascending: true });
 
-  const providerPlans = (plans || []) as PlanWithProvider[];
+  const providerPlans = (plans || []) as Plan[];
 
   // Calculate statistics
   const planCount = providerPlans.length;
@@ -348,73 +349,7 @@ export default async function ProviderPage({
                   Available Plans from {provider.name}
                 </h2>
 
-                {providerPlans.length > 0 ? (
-                  <div className="space-y-4">
-                    {providerPlans.map((plan) => (
-                      <div
-                        key={plan.id}
-                        className="border border-gray-200 rounded-lg p-5 hover:border-blue-300 hover:shadow-md transition-all"
-                      >
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                          {/* Plan Info */}
-                          <div className="flex-1">
-                            <h3 className="text-lg font-bold text-gray-900 mb-2">
-                              {plan.plan_name}
-                            </h3>
-                            <div className="flex flex-wrap gap-3 text-sm text-gray-600">
-                              <span className="flex items-center gap-1">
-                                <Calendar className="w-4 h-4" />
-                                {plan.contract_length_months === 0
-                                  ? 'Month-to-Month'
-                                  : `${plan.contract_length_months} months`}
-                              </span>
-                              <span className="flex items-center gap-1">
-                                <FileText className="w-4 h-4" />
-                                {plan.plan_type}
-                              </span>
-                              {plan.renewable_percentage > 0 && (
-                                <span className="flex items-center gap-1">
-                                  <Leaf className="w-4 h-4 text-green-600" />
-                                  {plan.renewable_percentage}% Renewable
-                                </span>
-                              )}
-                            </div>
-                          </div>
-
-                          {/* Rate & CTA */}
-                          <div className="flex items-center gap-4">
-                            <div className="text-right">
-                              <div className="text-sm text-gray-600 mb-1">
-                                Rate at 1000 kWh
-                              </div>
-                              <div className="text-3xl font-bold text-blue-600">
-                                {(plan.rate_1000kwh * 100).toFixed(1)}¢
-                              </div>
-                            </div>
-                            <Link
-                              href={`/compare?plan=${plan.id}`}
-                              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-lg transition-colors whitespace-nowrap"
-                            >
-                              View Details
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-12">
-                    <p className="text-gray-600 mb-4">
-                      No active plans currently available from {provider.name}.
-                    </p>
-                    <Link
-                      href="/compare"
-                      className="text-blue-600 hover:text-blue-700 font-semibold"
-                    >
-                      Compare Other Providers →
-                    </Link>
-                  </div>
-                )}
+                <ProviderPlansList plans={providerPlans} provider={provider} />
               </section>
 
               {/* About Section */}
