@@ -117,7 +117,7 @@ export default async function CitiesPage() {
                     <div className="flex items-baseline justify-between">
                       <span className="text-sm text-gray-600">Avg. Rate:</span>
                       <span className="text-xl font-bold text-blue-600">
-                        {(city.average_rate_1000 * 100).toFixed(1)}¢
+                        {city.average_rate_1000.toFixed(1)}¢
                       </span>
                     </div>
                     <div className="flex items-baseline justify-between">
@@ -161,7 +161,7 @@ export default async function CitiesPage() {
                   <div className="flex items-baseline justify-between">
                     <span className="text-xs text-gray-600">Avg. Rate:</span>
                     <span className="text-lg font-bold text-blue-600">
-                      {(city.average_rate_1000 * 100).toFixed(1)}¢
+                      {city.average_rate_1000.toFixed(1)}¢
                     </span>
                   </div>
                 </Link>
@@ -190,7 +190,7 @@ export default async function CitiesPage() {
                     {city.name}
                   </h3>
                   <p className="text-lg font-bold text-blue-600">
-                    {(city.average_rate_1000 * 100).toFixed(1)}¢
+                    {city.average_rate_1000.toFixed(1)}¢
                   </p>
                 </Link>
               ))}

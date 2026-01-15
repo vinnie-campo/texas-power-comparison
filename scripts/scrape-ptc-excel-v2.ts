@@ -131,7 +131,7 @@ async function updatePlans(plans: PlanRow[], providerMap: Map<string, string>): 
     if (!pid) continue;
     let planType = 'Fixed';
     if (p['Rate Type']?.toLowerCase() === 'variable') planType = 'Variable';
-    if (p.Prepaid) planType = 'Prepaid';
+    if (p.Prepaid === true) planType = 'Prepaid';
     const { error } = await supabase.from('plans').insert({
       provider_id: pid, plan_name: p['Plan Name'], plan_type: planType,
       contract_length_months: p['Term Value'] || 1, renewable_percentage: p['Renewable Perc'] || 0,

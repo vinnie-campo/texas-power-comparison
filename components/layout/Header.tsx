@@ -65,11 +65,11 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-4">
             {/* Phone Number */}
             <a
-              href="tel:1-800-555-0123"
+              href="/contact"
               className="flex items-center gap-2 text-sm text-[#003366] hover:text-[#00943C] transition-colors"
             >
               <Phone className="w-4 h-4" />
-              <span className="font-semibold">1-800-555-0123</span>
+              <span className="font-semibold">Contact Us</span>
             </a>
 
             {/* CTA Button */}
@@ -153,11 +153,11 @@ export default function Header() {
           <div className="p-4 border-t border-gray-200 space-y-3">
             {/* Phone Number */}
             <a
-              href="tel:1-800-555-0123"
+              href="/contact"
               className="flex items-center gap-2 text-[#003366] hover:text-[#00943C] transition-colors py-2"
             >
               <Phone className="w-5 h-5" />
-              <span className="font-semibold">1-800-555-0123</span>
+              <span className="font-semibold">Contact Us</span>
             </a>
 
             {/* CTA Button */}

@@ -277,7 +277,6 @@ export default function UsageCalculatorQuiz({
           <div className="grid grid-cols-1 gap-2">
             {[
               { value: 'yes' as EVStatus, label: 'Yes, I charge at home', extra: '+350 kWh/month' },
-              { value: 'planning' as EVStatus, label: 'Planning to get one', extra: '+175 kWh/month' },
               { value: 'no' as EVStatus, label: 'No', extra: 'No change' },
             ].map((option) => (
               <button
@@ -403,7 +402,7 @@ export default function UsageCalculatorQuiz({
             onClick={handleFinish}
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
           >
-            Find Plans for {breakdown.total} kWh/month
+            See Plans for {breakdown.total} kWh/month
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>

@@ -222,7 +222,7 @@ export default async function CityPage({
               </h2>
               <p className="text-blue-800 leading-relaxed">
                 The average electricity rate in {city.name}, Texas is{' '}
-                <strong>{(city.average_rate_1000 * 100).toFixed(1)}¢ per kWh</strong> for typical residential
+                <strong>{city.average_rate_1000.toFixed(1)}¢ per kWh</strong> for typical residential
                 usage of 1000 kWh per month. This translates to an estimated
                 monthly cost of approximately{' '}
                 <strong>${estimatedCost1000.toFixed(2)}</strong> for energy charges.
@@ -284,7 +284,7 @@ export default async function CityPage({
                         Low Usage (500 kWh/month)
                       </h3>
                       <div className="text-2xl font-bold text-blue-600">
-                        {(city.average_rate_500 * 100).toFixed(1)}¢/kWh
+                        {city.average_rate_500.toFixed(1)}¢/kWh
                       </div>
                     </div>
                     <p className="text-gray-600 text-sm mb-2">
@@ -311,7 +311,7 @@ export default async function CityPage({
                         Average Usage (1000 kWh/month)
                       </h3>
                       <div className="text-2xl font-bold text-blue-600">
-                        {(city.average_rate_1000 * 100).toFixed(1)}¢/kWh
+                        {city.average_rate_1000.toFixed(1)}¢/kWh
                       </div>
                     </div>
                     <p className="text-gray-600 text-sm mb-2">
@@ -332,7 +332,7 @@ export default async function CityPage({
                         High Usage (2000 kWh/month)
                       </h3>
                       <div className="text-2xl font-bold text-blue-600">
-                        {(city.average_rate_2000 * 100).toFixed(1)}¢/kWh
+                        {city.average_rate_2000.toFixed(1)}¢/kWh
                       </div>
                     </div>
                     <p className="text-gray-600 text-sm mb-2">
