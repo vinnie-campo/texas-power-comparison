@@ -54,7 +54,7 @@ export default function PlanCard({ plan, selectedUsage, usageBreakdown }: PlanCa
       rateToUse = plan.rate_2000kwh;
     }
 
-    return (rateToUse * usage) / 100 + plan.base_charge;
+    return (rateToUse * usage) + (plan.base_charge || 0);
   };
 
   // Personalized bill (if breakdown exists) uses actual calculated usage
@@ -150,7 +150,7 @@ export default function PlanCard({ plan, selectedUsage, usageBreakdown }: PlanCa
           <div className="flex items-baseline gap-1 mb-1">
             <span className="text-sm text-gray-600">Rate:</span>
             <span className="text-2xl font-bold text-[#00943C]">
-              {rate.toFixed(1)}¢
+              {(rate * 100).toFixed(1)}¢
             </span>
             <span className="text-sm text-gray-600">per kWh</span>
           </div>

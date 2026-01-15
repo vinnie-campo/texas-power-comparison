@@ -183,7 +183,7 @@ export default function PlansManagement() {
                       </span>
                     </td>
                     <td className="py-4 px-6 text-sm font-semibold text-gray-900">
-                      {plan.rate_1000kwh.toFixed(1)}¢
+                      {(plan.rate_1000kwh * 100).toFixed(1)}¢
                     </td>
                     <td className="py-4 px-6 text-sm text-gray-600">
                       {plan.contract_length_months === 0

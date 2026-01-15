@@ -416,7 +416,7 @@ export default async function Home() {
                       <div className="flex items-baseline gap-1">
                         <span className="text-sm text-gray-600">From</span>
                         <span className="text-2xl font-bold text-blue-600">
-                          {city.average_rate_1000.toFixed(1)}¢
+                          {(city.average_rate_1000 * 100).toFixed(1)}¢
                         </span>
                         <span className="text-sm text-gray-600">/kWh</span>
                       </div>

@@ -316,7 +316,7 @@ export default async function ProviderPage({
                     <TrendingUp className="w-5 h-5 text-green-600" />
                   </div>
                   <div className="text-2xl font-bold text-gray-900 mb-1">
-                    {lowestRate.toFixed(1)}¢
+                    {(lowestRate * 100).toFixed(1)}¢
                   </div>
                   <div className="text-sm text-gray-600">Lowest Rate</div>
                 </div>
@@ -388,7 +388,7 @@ export default async function ProviderPage({
                                 Rate at 1000 kWh
                               </div>
                               <div className="text-3xl font-bold text-blue-600">
-                                {plan.rate_1000kwh.toFixed(1)}¢
+                                {(plan.rate_1000kwh * 100).toFixed(1)}¢
                               </div>
                             </div>
                             <Link
@@ -510,13 +510,13 @@ export default async function ProviderPage({
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-blue-700">Lowest:</span>
                     <span className="text-lg font-bold text-blue-900">
-                      {lowestRate.toFixed(1)}¢/kWh
+                      {(lowestRate * 100).toFixed(1)}¢/kWh
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-blue-700">Highest:</span>
                     <span className="text-lg font-bold text-blue-900">
-                      {highestRate.toFixed(1)}¢/kWh
+                      {(highestRate * 100).toFixed(1)}¢/kWh
                     </span>
                   </div>
                 </div>

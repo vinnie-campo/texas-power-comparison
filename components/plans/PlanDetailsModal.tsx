@@ -164,13 +164,13 @@ export default function PlanDetailsModal({
                       Average price per kWh
                     </td>
                     <td className="px-4 py-3 text-center text-sm font-bold text-gray-900 border-r border-gray-300">
-                      {plan.rate_500kwh.toFixed(1)}¢
+                      {(plan.rate_500kwh * 100).toFixed(1)}¢
                     </td>
                     <td className="px-4 py-3 text-center text-sm font-bold text-gray-900 border-r border-gray-300">
-                      {plan.rate_1000kwh.toFixed(1)}¢
+                      {(plan.rate_1000kwh * 100).toFixed(1)}¢
                     </td>
                     <td className="px-4 py-3 text-center text-sm font-bold text-gray-900">
-                      {plan.rate_2000kwh.toFixed(1)}¢
+                      {(plan.rate_2000kwh * 100).toFixed(1)}¢
                     </td>
                   </tr>
                 </tbody>
