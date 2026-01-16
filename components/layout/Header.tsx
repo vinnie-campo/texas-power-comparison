@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, X, Zap, Phone } from 'lucide-react'
+import { Menu, X, Zap } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/LanguageContext'
 import LanguageToggle from './LanguageToggle'
 
@@ -41,13 +41,6 @@ export default function Header() {
           {/* Right side */}
           <div className="hidden md:flex items-center gap-4">
             <LanguageToggle />
-            <Link 
-              href="/contact"
-              className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
-            >
-              <Phone className="w-4 h-4" />
-              {t('contactUs')}
-            </Link>
             <Link
               href="/compare"
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition"
