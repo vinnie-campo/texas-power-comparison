@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Home, Building2, Building, Users, Ruler, Car, Sun, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { getClimateModifier } from '@/lib/climate';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 interface UsageCalculatorQuizProps {
   zipCode: string;
@@ -36,6 +37,7 @@ export default function UsageCalculatorQuiz({
   const [ev, setEV] = useState<EVStatus | null>(null);
   const [solar, setSolar] = useState<SolarStatus | null>(null);
   const [breakdown, setBreakdown] = useState<UsageBreakdown | null>(null);
+  const { t } = useLanguage();
 
   const totalSteps = 5;
 
@@ -137,7 +139,7 @@ export default function UsageCalculatorQuiz({
         <div className="mb-4">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm font-medium text-gray-600">
-              Step {currentStep} of {totalSteps}
+              {t('stepOf').replace('{current}', String(currentStep)).replace('{total}', String(totalSteps))}
             </span>
             <span className="text-sm font-medium text-blue-600">
               {Math.round((currentStep / totalSteps) * 100)}%
@@ -157,16 +159,16 @@ export default function UsageCalculatorQuiz({
         <div className="space-y-4 animate-fadeIn">
           <div className="text-center mb-3">
             <h2 className="text-xl font-bold text-gray-900 mb-1">
-              What type of property do you have?
+              {t('homeTypeQuestion')}
             </h2>
-            <p className="text-sm text-gray-600">This helps us estimate your base energy usage</p>
+            <p className="text-sm text-gray-600">{t('homeTypeDesc')}</p>
           </div>
           <div className="grid grid-cols-2 gap-3">
             {[
-              { value: 'house' as PropertyType, label: 'House', icon: Home },
-              { value: 'apartment' as PropertyType, label: 'Apartment', icon: Building2 },
-              { value: 'condo' as PropertyType, label: 'Condo', icon: Building },
-              { value: 'townhouse' as PropertyType, label: 'Townhouse', icon: Building2 },
+              { value: 'house' as PropertyType, labelKey: 'house' as const, icon: Home },
+              { value: 'apartment' as PropertyType, labelKey: 'apartment' as const, icon: Building2 },
+              { value: 'condo' as PropertyType, labelKey: 'condo' as const, icon: Building },
+              { value: 'townhouse' as PropertyType, labelKey: 'townhouse' as const, icon: Building2 },
             ].map((option) => {
               const Icon = option.icon;
               return (
@@ -185,7 +187,7 @@ export default function UsageCalculatorQuiz({
                   <div className={`font-semibold text-sm ${
                     propertyType === option.value ? 'text-blue-600' : 'text-gray-900'
                   }`}>
-                    {option.label}
+                    {t(option.labelKey)}
                   </div>
                 </button>
               );
@@ -200,9 +202,9 @@ export default function UsageCalculatorQuiz({
           <div className="text-center mb-3">
             <Users className="w-10 h-10 text-blue-600 mx-auto mb-2" />
             <h2 className="text-xl font-bold text-gray-900 mb-1">
-              How many bedrooms?
+              {t('bedroomsQuestion')}
             </h2>
-            <p className="text-sm text-gray-600">More bedrooms typically mean higher energy use</p>
+            <p className="text-sm text-gray-600">{t('bedroomsDesc')}</p>
           </div>
           <div className="grid grid-cols-5 gap-2">
             {(['1', '2', '3', '4', '5+'] as Bedrooms[]).map((num) => (
@@ -232,17 +234,17 @@ export default function UsageCalculatorQuiz({
           <div className="text-center mb-3">
             <Ruler className="w-10 h-10 text-blue-600 mx-auto mb-2" />
             <h2 className="text-xl font-bold text-gray-900 mb-1">
-              What's your square footage?
+              {t('sqftQuestion')}
             </h2>
-            <p className="text-sm text-gray-600">Larger spaces require more heating and cooling</p>
+            <p className="text-sm text-gray-600">{t('sqftDesc')}</p>
           </div>
           <div className="grid grid-cols-1 gap-2">
             {[
-              { value: '<1000' as SquareFootage, label: 'Under 1,000 sq ft' },
-              { value: '1000-1500' as SquareFootage, label: '1,000 - 1,500 sq ft' },
-              { value: '1500-2000' as SquareFootage, label: '1,500 - 2,000 sq ft' },
-              { value: '2000-3000' as SquareFootage, label: '2,000 - 3,000 sq ft' },
-              { value: '3000+' as SquareFootage, label: 'Over 3,000 sq ft' },
+              { value: '<1000' as SquareFootage, labelKey: 'sqftUnder1000' as const },
+              { value: '1000-1500' as SquareFootage, labelKey: 'sqft1000to1500' as const },
+              { value: '1500-2000' as SquareFootage, labelKey: 'sqft1500to2000' as const },
+              { value: '2000-3000' as SquareFootage, labelKey: 'sqft2000to3000' as const },
+              { value: '3000+' as SquareFootage, labelKey: 'sqftOver3000' as const },
             ].map((option) => (
               <button
                 key={option.value}
@@ -256,7 +258,7 @@ export default function UsageCalculatorQuiz({
                 <div className={`font-semibold text-sm ${
                   sqft === option.value ? 'text-blue-600' : 'text-gray-900'
                 }`}>
-                  {option.label}
+                  {t(option.labelKey)}
                 </div>
               </button>
             ))}
@@ -270,14 +272,14 @@ export default function UsageCalculatorQuiz({
           <div className="text-center mb-3">
             <Car className="w-10 h-10 text-blue-600 mx-auto mb-2" />
             <h2 className="text-xl font-bold text-gray-900 mb-1">
-              Do you have an Electric Vehicle?
+              {t('evQuestion')}
             </h2>
-            <p className="text-sm text-gray-600">Charging at home significantly increases usage</p>
+            <p className="text-sm text-gray-600">{t('evDesc')}</p>
           </div>
           <div className="grid grid-cols-1 gap-2">
             {[
-              { value: 'yes' as EVStatus, label: 'Yes, I charge at home', extra: '+350 kWh/month' },
-              { value: 'no' as EVStatus, label: 'No', extra: 'No change' },
+              { value: 'yes' as EVStatus, labelKey: 'evYes' as const, extraKey: 'evExtra' as const },
+              { value: 'no' as EVStatus, labelKey: 'evNo' as const, extraKey: 'noChange' as const },
             ].map((option) => (
               <button
                 key={option.value}
@@ -291,9 +293,9 @@ export default function UsageCalculatorQuiz({
                 <div className={`font-semibold text-sm mb-0.5 ${
                   ev === option.value ? 'text-blue-600' : 'text-gray-900'
                 }`}>
-                  {option.label}
+                  {t(option.labelKey)}
                 </div>
-                <div className="text-xs text-gray-500">{option.extra}</div>
+                <div className="text-xs text-gray-500">{t(option.extraKey)}</div>
               </button>
             ))}
           </div>
@@ -306,15 +308,15 @@ export default function UsageCalculatorQuiz({
           <div className="text-center mb-3">
             <Sun className="w-10 h-10 text-blue-600 mx-auto mb-2" />
             <h2 className="text-xl font-bold text-gray-900 mb-1">
-              Do you have Solar Panels?
+              {t('solarQuestion')}
             </h2>
-            <p className="text-sm text-gray-600">Solar can significantly reduce grid usage</p>
+            <p className="text-sm text-gray-600">{t('solarDesc')}</p>
           </div>
           <div className="grid grid-cols-1 gap-2">
             {[
-              { value: 'yes' as SolarStatus, label: 'Yes, I have solar panels', extra: '-40% usage' },
-              { value: 'considering' as SolarStatus, label: 'Considering installation', extra: 'No change yet' },
-              { value: 'no' as SolarStatus, label: 'No solar panels', extra: 'No change' },
+              { value: 'yes' as SolarStatus, labelKey: 'solarYes' as const, extraKey: 'solarReduction' as const },
+              { value: 'considering' as SolarStatus, labelKey: 'solarConsidering' as const, extraKey: 'noChangeYet' as const },
+              { value: 'no' as SolarStatus, labelKey: 'solarNo' as const, extraKey: 'noChange' as const },
             ].map((option) => (
               <button
                 key={option.value}
@@ -328,9 +330,9 @@ export default function UsageCalculatorQuiz({
                 <div className={`font-semibold text-sm mb-0.5 ${
                   solar === option.value ? 'text-blue-600' : 'text-gray-900'
                 }`}>
-                  {option.label}
+                  {t(option.labelKey)}
                 </div>
-                <div className="text-xs text-gray-500">{option.extra}</div>
+                <div className="text-xs text-gray-500">{t(option.extraKey)}</div>
               </button>
             ))}
           </div>
@@ -345,31 +347,31 @@ export default function UsageCalculatorQuiz({
               <Check className="w-10 h-10 text-green-600" />
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">
-              Your Estimated Monthly Usage
+              {t('estimatedUsage')}
             </h2>
             <div className="text-5xl font-bold text-blue-600 mb-2">
               {breakdown.total} kWh
             </div>
-            <p className="text-gray-600">Based on your home profile</p>
+            <p className="text-gray-600">{t('basedOnProfile')}</p>
           </div>
 
           {/* Breakdown */}
           <div className="bg-gray-50 rounded-lg p-4 space-y-2">
-            <h3 className="font-semibold text-gray-900 mb-3">Usage Breakdown:</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">{t('usageBreakdown')}</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600">Base usage ({propertyType}):</span>
+                <span className="text-gray-600">{t('baseUsage')} ({propertyType ? t(propertyType as 'house' | 'apartment' | 'condo' | 'townhouse') : ''}):</span>
                 <span className="font-medium">{breakdown.base} kWh</span>
               </div>
               {breakdown.bedrooms > 0 && (
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Bedrooms adjustment:</span>
+                  <span className="text-gray-600">{t('bedroomsAdjustment')}:</span>
                   <span className="font-medium">+{breakdown.bedrooms} kWh</span>
                 </div>
               )}
               {breakdown.sqft !== 0 && (
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Square footage:</span>
+                  <span className="text-gray-600">{t('squareFootage')}:</span>
                   <span className="font-medium">
                     {breakdown.sqft > 0 ? '+' : ''}{breakdown.sqft} kWh
                   </span>
@@ -377,22 +379,22 @@ export default function UsageCalculatorQuiz({
               )}
               {breakdown.ev > 0 && (
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Electric vehicle:</span>
+                  <span className="text-gray-600">{t('electricVehicle')}:</span>
                   <span className="font-medium">+{breakdown.ev} kWh</span>
                 </div>
               )}
               {breakdown.solar < 0 && (
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Solar panels:</span>
+                  <span className="text-gray-600">{t('solarPanels')}:</span>
                   <span className="font-medium text-green-600">{breakdown.solar} kWh</span>
                 </div>
               )}
               <div className="flex justify-between">
-                <span className="text-gray-600">Climate adjustment:</span>
+                <span className="text-gray-600">{t('climateAdjustment')}:</span>
                 <span className="font-medium">+{breakdown.climate} kWh</span>
               </div>
               <div className="border-t border-gray-300 pt-2 mt-2 flex justify-between font-bold">
-                <span className="text-gray-900">Total:</span>
+                <span className="text-gray-900">{t('total')}:</span>
                 <span className="text-blue-600">{breakdown.total} kWh</span>
               </div>
             </div>
@@ -402,7 +404,7 @@ export default function UsageCalculatorQuiz({
             onClick={handleFinish}
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
           >
-            See Plans for {breakdown.total} kWh/month
+            {t('seePlansFor').replace('{usage}', String(breakdown.total))}
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
@@ -421,7 +423,7 @@ export default function UsageCalculatorQuiz({
             }`}
           >
             <ChevronLeft className="w-5 h-5" />
-            Back
+            {t('back')}
           </button>
           <button
             onClick={handleNext}
@@ -432,7 +434,7 @@ export default function UsageCalculatorQuiz({
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
             }`}
           >
-            {currentStep === totalSteps ? 'Calculate' : 'Next'}
+            {currentStep === totalSteps ? t('calculate') : t('next')}
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>

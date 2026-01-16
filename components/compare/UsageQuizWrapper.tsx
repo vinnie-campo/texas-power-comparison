@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import UsageCalculatorQuiz from '@/components/search/UsageCalculatorQuiz';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 interface UsageBreakdown {
   base: number;
@@ -20,6 +21,7 @@ interface UsageQuizWrapperProps {
 export default function UsageQuizWrapper({ zipCode }: UsageQuizWrapperProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { t } = useLanguage();
 
   const handleCalculated = (usage: number, breakdown: UsageBreakdown) => {
     // Encode breakdown as JSON for URL
@@ -39,10 +41,10 @@ export default function UsageQuizWrapper({ zipCode }: UsageQuizWrapperProps) {
     <div className="max-w-3xl mx-auto">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold text-gray-900 mb-2">
-          Calculate Your Usage
+          {t('calculateUsage')}
         </h2>
         <p className="text-gray-600">
-          Answer a few questions to get personalized plan recommendations
+          {t('calculateUsageDesc')}
         </p>
       </div>
       <UsageCalculatorQuiz zipCode={zipCode} onCalculated={handleCalculated} />

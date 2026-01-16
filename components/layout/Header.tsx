@@ -1,176 +1,99 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Zap, Phone, Menu, X } from 'lucide-react';
+import Link from 'next/link'
+import { useState } from 'react'
+import { Menu, X, Zap, Phone } from 'lucide-react'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
+import LanguageToggle from './LanguageToggle'
 
 export default function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
-
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/compare', label: 'Compare Rates' },
-    { href: '/providers', label: 'Providers' },
-    { href: '/resources', label: 'Resources' },
-  ];
-
-  const isActive = (href: string) => {
-    if (href === '/') {
-      return pathname === '/';
-    }
-    return pathname.startsWith(href);
-  };
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { t } = useLanguage()
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md border-b border-gray-200">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-20">
+    <header className="bg-white shadow-sm sticky top-0 z-50">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 font-bold text-xl text-[#003366] hover:text-[#00943C] transition-colors"
-            onClick={closeMobileMenu}
-          >
-            <div className="w-10 h-10 bg-[#00943C] rounded-full flex items-center justify-center shadow-md">
-              <Zap className="w-6 h-6 text-white" fill="white" />
+          <Link href="/" className="flex items-center gap-2">
+            <div className="bg-green-600 p-2 rounded-lg">
+              <Zap className="w-5 h-5 text-white" />
             </div>
-            <span className="hidden sm:inline">Texas Power Compare</span>
-            <span className="sm:hidden">TPC</span>
+            <span className="font-bold text-xl text-gray-900">Texas Power Compare</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-semibold transition-all ${
-                  isActive(link.href)
-                    ? 'text-[#00943C] border-b-2 border-[#00943C]'
-                    : 'text-[#003366] hover:text-[#00943C]'
-                } py-1`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          <div className="hidden md:flex items-center gap-8">
+            <Link href="/" className="text-gray-600 hover:text-gray-900 font-medium">
+              {t('home')}
+            </Link>
+            <Link href="/compare" className="text-green-600 hover:text-green-700 font-medium">
+              {t('compareRates')}
+            </Link>
+            <Link href="/providers" className="text-gray-600 hover:text-gray-900 font-medium">
+              {t('providers')}
+            </Link>
+            <Link href="/resources" className="text-gray-600 hover:text-gray-900 font-medium">
+              {t('resources')}
+            </Link>
+          </div>
 
-          {/* Desktop Right Side */}
-          <div className="hidden lg:flex items-center gap-4">
-            {/* Phone Number */}
-            <a
+          {/* Right side */}
+          <div className="hidden md:flex items-center gap-4">
+            <LanguageToggle />
+            <Link 
               href="/contact"
-              className="flex items-center gap-2 text-sm text-[#003366] hover:text-[#00943C] transition-colors"
+              className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
             >
               <Phone className="w-4 h-4" />
-              <span className="font-semibold">Contact Us</span>
-            </a>
-
-            {/* CTA Button */}
+              {t('contactUs')}
+            </Link>
             <Link
               href="/compare"
-              className="bg-[#00943C] text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-200 hover:bg-[#007830] hover:shadow-lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition"
             >
-              Find Your Plan
+              {t('findYourPlan')}
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu button */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-[#003366] hover:text-[#00943C] transition-colors"
-            aria-label="Toggle menu"
+            className="md:hidden p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
-      </div>
 
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-          onClick={closeMobileMenu}
-        />
-      )}
-
-      {/* Mobile Menu Drawer */}
-      <div
-        className={`fixed top-0 right-0 h-full w-80 max-w-full bg-white shadow-xl z-50 transform transition-transform duration-300 lg:hidden ${
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        <div className="h-full flex flex-col">
-          {/* Mobile Menu Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-[#003366]">
-            <div className="flex items-center gap-2 font-bold text-lg text-white">
-              <div className="w-8 h-8 bg-[#00943C] rounded-full flex items-center justify-center">
-                <Zap className="w-5 h-5 text-white" fill="white" />
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <div className="md:hidden py-4 border-t">
+            <div className="flex flex-col gap-4">
+              <Link href="/" className="text-gray-600 hover:text-gray-900 font-medium">
+                {t('home')}
+              </Link>
+              <Link href="/compare" className="text-green-600 hover:text-green-700 font-medium">
+                {t('compareRates')}
+              </Link>
+              <Link href="/providers" className="text-gray-600 hover:text-gray-900 font-medium">
+                {t('providers')}
+              </Link>
+              <Link href="/resources" className="text-gray-600 hover:text-gray-900 font-medium">
+                {t('resources')}
+              </Link>
+              <div className="pt-4 border-t flex items-center justify-between">
+                <LanguageToggle />
+                <Link
+                  href="/compare"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold"
+                >
+                  {t('findYourPlan')}
+                </Link>
               </div>
-              <span>Texas Power Compare</span>
             </div>
-            <button
-              onClick={closeMobileMenu}
-              className="p-2 text-white hover:opacity-80 transition-opacity"
-              aria-label="Close menu"
-            >
-              <X className="w-6 h-6" />
-            </button>
           </div>
-
-          {/* Mobile Navigation Links */}
-          <nav className="flex-1 overflow-y-auto p-4">
-            <ul className="space-y-2">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    onClick={closeMobileMenu}
-                    className={`block py-3 px-4 rounded-lg font-semibold transition-all ${
-                      isActive(link.href)
-                        ? 'bg-[#00943C] text-white'
-                        : 'text-[#003366] hover:bg-[#F5F7FA]'
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* Mobile Menu Footer */}
-          <div className="p-4 border-t border-gray-200 space-y-3">
-            {/* Phone Number */}
-            <a
-              href="/contact"
-              className="flex items-center gap-2 text-[#003366] hover:text-[#00943C] transition-colors py-2"
-            >
-              <Phone className="w-5 h-5" />
-              <span className="font-semibold">Contact Us</span>
-            </a>
-
-            {/* CTA Button */}
-            <Link
-              href="/compare"
-              onClick={closeMobileMenu}
-              className="block w-full btn-primary text-center"
-            >
-              Find Your Plan
-            </Link>
-          </div>
-        </div>
-      </div>
+        )}
+      </nav>
     </header>
-  );
+  )
 }
