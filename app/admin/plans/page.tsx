@@ -54,7 +54,12 @@ export default function AdminPlansPage() {
       .limit(200)
 
     if (!error && data) {
-      setPlans(data as Plan[])
+      // Supabase returns provider as array, normalize to single object
+      const normalized = data.map((plan: any) => ({
+        ...plan,
+        provider: Array.isArray(plan.provider) ? plan.provider[0] : plan.provider
+      }))
+      setPlans(normalized as Plan[])
     }
     setLoading(false)
   }
