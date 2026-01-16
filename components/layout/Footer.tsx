@@ -12,10 +12,10 @@ export default function Footer() {
   ];
 
   const resources = [
-    { href: '/resources/understanding-bill', label: 'Understanding Your Bill' },
-    { href: '/resources/fixed-vs-variable', label: 'Fixed vs Variable Rates' },
-    { href: '/resources/switching', label: 'Switching Providers' },
-    { href: '/resources/faq', label: 'FAQ' },
+    { href: '/resources/understanding-electricity-bill', label: 'Understanding Your Bill' },
+    { href: '/resources/fixed-vs-variable-rates', label: 'Fixed vs Variable Rates' },
+    { href: '/resources/how-to-switch-providers', label: 'Switching Providers' },
+    { href: '/resources', label: 'All Resources' },
   ];
 
   const serviceAreas = [
